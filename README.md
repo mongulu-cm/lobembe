@@ -19,5 +19,5 @@ Sur votre poste :
 
 ```
   terraform apply
-  aws s3 cp html/ s3://www.xxxx.yyy --recursive
+  aws s3 sync --delete html/ s3://lobembe.mongulu.cm
 ```    
