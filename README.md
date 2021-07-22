@@ -5,6 +5,7 @@
   - http://lobembe.mongulu.cm/?q=notes  
   - http://lobembe.mongulu.cm/?q=meet
   - http://lobembe.mongulu.cm/?q=tasks
+  - http://lobembe.mongulu.cm/?q=videos
 
 
 ### Prérequis
