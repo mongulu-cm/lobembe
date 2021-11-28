@@ -1,0 +1,29 @@
+# Réunion 09
+
+Présence:  / 7 personnes
+
+## Recommandations
+
+```
+    https://www.jetbrains.com/code-with-me/   
+    https://visualstudio.microsoft.com/fr/services/live-share/    
+    https://docs.microsoft.com/fr-fr/windows/wsl/tutorials/gui-apps  
+    https://github.com/neovim/neovim
+    https://github.com/public-apis/public-apis
+    https://github.com/marketplace/github-learning-lab
+    https://www.amazon.com/s?rh=p_27%3AAWS+Training+%26+Certification&language=en_US
+```
+
+
+## Partenariats
+
+- ENSPY Alumni ( conseil) :  Test des outils proposés et assez difficile d'installation ...
+
+## Numérique Cameroun
+
+```
+https://www.investiraucameroun.com/gestion-publique/1011-17114-l-application-camerounaise-ouicare-remporte-le-prix-orange-de-l-entreprenariat-social-en-afrique-et-au-moyen-orient  
+https://www.investiraucameroun.com/gestion-publique/0311-17087-grace-a-l-application-tourcmr-developpee-par-nchimsy-teq-le-cameroun-lance-la-promotion-de-145-sites-touristiques  
+https://www.stopblablacam.com/economie/0411-7659-e-commerce-une-plateforme-pour-dedouaner-des-marchandises-acquises-de-l-etranger-par-voie-electronique  
+https://www.investiraucameroun.com/economie/2611-17204-la-beac-veut-creer-une-plateforme-numerique-pour-faciliter-la-collecte-des-donnees-sur-les-societes-dassurance  
+```
