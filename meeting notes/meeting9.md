@@ -1,6 +1,6 @@
 # Réunion 09
 
-Présence:  / 7 personnes
+Présence: 5 / 7 personnes
 
 ## Recommandations
 
