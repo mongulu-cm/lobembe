@@ -12,6 +12,8 @@ Présence: 5 / 7 personnes
     https://github.com/public-apis/public-apis
     https://github.com/marketplace/github-learning-lab
     https://www.amazon.com/s?rh=p_27%3AAWS+Training+%26+Certification&language=en_US
+    https://devopscube.com/best-opensource-monitoring-tools/
+    https://github.com/PacktPublishing/Learning_DevOps
 ```
 
 
