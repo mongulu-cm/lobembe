@@ -13,8 +13,6 @@ Présence: 5 / 7 personnes
     https://github.com/marketplace/github-learning-lab
     https://www.amazon.com/s?rh=p_27%3AAWS+Training+%26+Certification&language=en_US
     https://devopscube.com/best-opensource-monitoring-tools/
-    https://github.com/PacktPublishing/Learning_DevOps
-    https://training.linuxfoundation.org/cloud-containers/?SSAID=746540&sscid=c1k5_gf3qr
 ```
 
 
