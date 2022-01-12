@@ -665,6 +665,9 @@ Présence: X personnes
     https://github.com/ezbz/gitlabber ( clone an organization )
     https://github.com/PacktPublishing/Learning_DevOps
     https://training.linuxfoundation.org/cloud-containers/?SSAID=746540&sscid=c1k5_gf3qr
+    https://huggingface.co/
+    https://gto76.github.io/python-cheatsheet/
+    https://github.com/antonmedv/fx
 ```
 
 
