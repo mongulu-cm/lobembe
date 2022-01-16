@@ -18,6 +18,7 @@ Présence: X personnes
     https://huggingface.co/
     https://gto76.github.io/python-cheatsheet/
     https://github.com/antonmedv/fx
+    https://github.com/Textualize/rich
 ```
 
 
