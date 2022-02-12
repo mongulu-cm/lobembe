@@ -29,7 +29,7 @@ Présence: X personnes
 ## Numérique Cameroun
 
 ```
-  
+    https://www.investiraucameroun.com/economie/0902-17493-tic-le-cameroun-lance-un-incubateur-national-pour-dynamiser-l-industrie-du-numerique
 ```
 <br>
 </details>
