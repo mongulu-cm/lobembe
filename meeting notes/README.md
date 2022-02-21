@@ -21,6 +21,7 @@ Présence: X personnes
     https://github.com/Textualize/rich
     https://github.com/files-community
     https://github.com/airbytehq/airbyte
+    https://adrianstoll.com/tips-and-tricks/running-services-at-startup-windows-subsystem-for-linux.html
 ```
 
 
