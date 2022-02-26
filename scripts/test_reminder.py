@@ -34,17 +34,17 @@ class TestConstructMessage(unittest.TestCase):
     def test_sunday(self):
         last_sunday = 27
 
-        today = datetime.datetime(2022, 2, 27, 10, 00, 30)
+        today = datetime.datetime(2022, 2, 27, 9, 00, 30)
         self.assertEqual(construct_message(today, last_sunday),
                          ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h "
                          "http://lobembe.mongulu.cm/?q=meet")
 
-        today = datetime.datetime(2022, 2, 27, 10, 00, 30)
+        today = datetime.datetime(2022, 2, 27, 13, 00, 30)
         self.assertEqual(construct_message(today, last_sunday),
                          ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h "
                          "http://lobembe.mongulu.cm/?q=meet")
 
-        today = datetime.datetime(2022, 2, 27, 18, 00, 30)
+        today = datetime.datetime(2022, 2, 27, 17, 00, 30)
         self.assertEqual(construct_message(today, last_sunday),
                          ":alert: Le meeting c'est maintenant http://lobembe.mongulu.cm/?q=meet :alert: ")
 
