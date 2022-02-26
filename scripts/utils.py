@@ -1,0 +1,19 @@
+
+def construct_message(today, last_sunday):
+    # default message
+    message = ":alert: Rappel :alert: Le meeting de ce mois c'est :date:  dimanche " + str(
+        last_sunday) + " de 18 à 19h30 :date"
+
+    if today.day == last_sunday:
+        if int(today.hour) == 10:
+            message = ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h http://lobembe.mongulu.cm/?q=meet"
+        elif int(today.hour) == 14:
+            message = ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h http://lobembe.mongulu.cm/?q=meet"
+        elif int(today.hour) == 18:
+            message = ":alert: Le meeting c'est maintenant http://lobembe.mongulu.cm/?q=meet :alert: "
+    elif today.day == last_sunday - 1:
+        message = ":alert: Rappel :alert: Le meeting c'est demain à 18h http://lobembe.mongulu.cm/?q=meet"
+    elif today.day == last_sunday - 3:
+        message = ":alert: Rappel :alert: Le meeting de ce mois c'est :date: ce dimanche de 18 à 19h30 :date"
+
+    return message
