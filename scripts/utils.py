@@ -5,11 +5,11 @@ def construct_message(today, last_sunday):
         last_sunday) + " de 18 à 19h30 :date"
 
     if today.day == last_sunday:
-        if int(today.hour) == 10:
+        if int(today.hour) == 9:
             message = ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h http://lobembe.mongulu.cm/?q=meet"
-        elif int(today.hour) == 14:
+        elif int(today.hour) == 13:
             message = ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h http://lobembe.mongulu.cm/?q=meet"
-        elif int(today.hour) == 18:
+        elif int(today.hour) == 17:
             message = ":alert: Le meeting c'est maintenant http://lobembe.mongulu.cm/?q=meet :alert: "
     elif today.day == last_sunday - 1:
         message = ":alert: Rappel :alert: Le meeting c'est demain à 18h http://lobembe.mongulu.cm/?q=meet"

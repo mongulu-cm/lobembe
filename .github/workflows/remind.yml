@@ -2,11 +2,11 @@ name: Send reminder
 
 on:
   schedule:
-    - cron: '00 20 * * 4'
-    - cron: '00 18 * * 6'
-    - cron: '00 10 * * 0'
-    - cron: '00 14 * * 0'
-    - cron: '00 18 * * 0'
+    - cron: '00 19 * * 4'
+    - cron: '00 17 * * 6'
+    - cron: '00 9 * * 0'
+    - cron: '00 13 * * 0'
+    - cron: '00 17 * * 0'
 
 jobs:
   reminder:
