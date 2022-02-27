@@ -7,7 +7,6 @@
   - http://lobembe.mongulu.cm/?q=tasks
   - http://lobembe.mongulu.cm/?q=videos
 
-
 ### Prérequis
 Sur le cloud AWS:
 * Un enregistrement DNS dans Route 53 reliant le sous-domaine www.xxxx.yyy  renseigné par la variable `website_bucket_name` 
