@@ -44,7 +44,7 @@ class TestConstructMessage(unittest.TestCase):
                          ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h "
                          "http://lobembe.mongulu.cm/?q=meet")
 
-        today = datetime.datetime(2022, 2, 27, 17, 00, 30)
+        today = datetime.datetime(2022, 2, 27, 16, 45, 30)
         self.assertEqual(construct_message(today, last_sunday),
                          ":alert: Le meeting c'est maintenant http://lobembe.mongulu.cm/?q=meet :alert: ")
 
