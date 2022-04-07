@@ -20,10 +20,7 @@ if message != "":
         "type": "stream",
         "to": "general",
         "topic": "meeting",
-        "content": " {} \
-         \n \
-         \n *NB: Pour ceux qui ont oublié. En décembre 2021, on avait décidé que les réunions seraient désormais fixes. \
-          Ce sera à chaque fois le dernier dimanche du mois de 18h à 19h30* ".format(message)
+        "content": " {} ".format(message)
     }
 
     result = client.send_message(request)
