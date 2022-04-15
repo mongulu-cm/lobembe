@@ -1,0 +1,308 @@
+{
+  "data": {
+    "pairs": [
+      {
+        "request": {
+          "path": [
+            {
+              "matcher": "exact",
+              "value": "/repos/mongulu-cm/monocle"
+            }
+          ],
+          "method": [
+            {
+              "matcher": "exact",
+              "value": "GET"
+            }
+          ],
+          "destination": [
+            {
+              "matcher": "exact",
+              "value": "api.github.com"
+            }
+          ],
+          "scheme": [
+            {
+              "matcher": "exact",
+              "value": "https"
+            }
+          ],
+          "body": [
+            {
+              "matcher": "exact",
+              "value": ""
+            }
+          ],
+          "headers": {
+            "Accept": [
+              {
+                "matcher": "exact",
+                "value": "*/*"
+              }
+            ],
+            "Accept-Encoding": [
+              {
+                "matcher": "exact",
+                "value": "gzip, deflate"
+              }
+            ],
+            "Connection": [
+              {
+                "matcher": "exact",
+                "value": "keep-alive"
+              }
+            ]
+          }
+        },
+        "response": {
+          "status": 200,
+          "body": "H4sIAAAAAAAAA+1YwW7jNhD9F1+bRLbiNLGBxfaw7QIFsgGKFFhsURiURFuMKVElKRu2kH/vG1GyJGMdJ8w1F1ui+B6Hw5nhzFQjkYzm17O7u8nsJry5GOUq4QsaG91/+X37IP+U8dfZnn3/axPn6/3D42p6/7ie3D/9/WmEySzjmJmpXMWSY2BZSrnoRlelLC/jLOgmFFpsmAVoyaThFyO1zbkezauRVCuRO64GBTqS43Y2vbu+vR4fibZ7WM92P8I/Sva9SJOvchM9xTffvqz23/b3W0AZlmF6UWoJ0tTawsyDwA2aq5WwaRmVhutY5Zbn9ipWWVAG7VqfN5+m4FjphqXWBwaO2ArRMDk46AxttZM/tZk8EsEtXQMGU5dKSrUFw7HILy8SHHCk/ZpD5CsvDuCqQNmUQ2vYyjMpQBj7VoFqTBXQH+yIWAwOQvPkjUI1KIhEJvJcBZoXqqYrIxNrUVih8rcKN8CCS+kVy8We+XABa0BBYr1VjBoDLN/A9t4KdqAqqF0p3pFKNI+52EDFXoRHaPDZXUF+/dDTDileWL5gSUZ+Wrvv8wU863UW3gsBCT8c32ieI2CQ4er1ISS86GS15nqe0+MlkjO6PIWGFwGLLa75zpeCoFWA38bqYzgji5RmVp1z6pNiDTiqoP9Kx245y3zFrbHgSJXy1lqNBYcwpuSvsr2TO60pTNDadl5mkQtBr7Hok6wODAmZMWKVc+6rrQO+CtrYGGmWx6k3YwuvAvdUnydb+QpIUDBEUkW+FLiZghpfBSZlLvzbxTtkIkKCD/g0X75HQIIf+Kz2P9FaOMIf2HDhWByur3QtPKga7UmGTICtvAkPeAq9uEJXbH82PTjpCR0B2Cjp0SIq3xWZOgqSz93J8Flv9XUMHV99x7+cN5zecS9NqPecZeLcXXuSrEEPLPl9jGR/x6z0fj4heFFIgldBFz5daG6IPTXZxOZWuj59kz77HnoLD6pfCmZTijlYpWCae4raoIMqYkhPrq6uqpSzOgnNuPZ3RQcGC9NxikTLU7qqhSPdyJitc9olCZcgx5WKJb56PODB5U7LU0IH7p9wgQTNV6wa2yfLhOTGqtw7JnYEfdpcWbEU8Wuy+JPOM+CoPhuRx/yCITmFNVoRC9gnCiQ6LGR13FslDgzhUTm7zF1ymKqvhjV38CpwpVbCC6l27wkiPQbyRs1RrScLZlEOhONwcjm+uwzDx8l0Hv46n05+YE5ZJIM54eU4vAwnj+FkPr6ZX9/SnKI0aY8GUyaXk/AxHM9vZvMwpCkIiI3R4gm1+k8L5Tbdp7obGGPSDvNbh5h3pfURIpawviPneNVKm+N76EUUZEtVxgtc/22NY8Qez9PBXR6rModm0dvYMotkErdnN9Te/y1ByszC+edobnWJ5gmNFFo98dia/lgXDnoTt2ItBkBKTQ5FlyueusUzobVq2ieuRmtiFzohbvFEGBZJjve2lVPwvBGwvwsR89wctACPUtsFrQZvaqmEWVieFbLfGLKqEDHk++ffi9FGGBEJKewOVliUkRQxFOxqNlKe6lYeKLN+SfiSldIuXJpNHSaGAhYmyXUGdVITgfpPTV3r9kZTLE1r9krm2z4jc6pP1c2kEOeeUQzTJhbOwqxac2pnYSG3ZfNfyWCt9U3Sgt2Xeggao/xk+EVzusZ+hmHI3drxRv0JQgHqc7fNBdKmZqnms1vL+epBF+3J9ev8j15c00c7m8tSJTjoRXz04gbN1jOdy49eHFrOxyb0nl5czu0WgbUXfPtlWRvbn/8HHU4AifMXAAA=",
+          "encodedBody": true,
+          "headers": {
+            "Access-Control-Allow-Origin": [
+              "*"
+            ],
+            "Access-Control-Expose-Headers": [
+              "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset"
+            ],
+            "Cache-Control": [
+              "private, max-age=60, s-maxage=60"
+            ],
+            "Content-Encoding": [
+              "gzip"
+            ],
+            "Content-Security-Policy": [
+              "default-src 'none'"
+            ],
+            "Content-Type": [
+              "application/json; charset=utf-8"
+            ],
+            "Date": [
+              "Thu, 14 Apr 2022 23:31:45 GMT"
+            ],
+            "Etag": [
+              "W/\"20ed90da4f14c8c8dcbce6bd7fbdc15a267e297c408ae6d9db8a551d6b3cb33c\""
+            ],
+            "Github-Authentication-Token-Expiration": [
+              "2022-12-30 23:00:00 UTC"
+            ],
+            "Hoverfly": [
+              "Was-Here"
+            ],
+            "Last-Modified": [
+              "Mon, 21 Feb 2022 21:05:37 GMT"
+            ],
+            "Referrer-Policy": [
+              "origin-when-cross-origin, strict-origin-when-cross-origin"
+            ],
+            "Server": [
+              "GitHub.com"
+            ],
+            "Strict-Transport-Security": [
+              "max-age=31536000; includeSubdomains; preload"
+            ],
+            "Vary": [
+              "Accept, Authorization, Cookie, X-GitHub-OTP",
+              "Accept-Encoding, Accept, X-Requested-With"
+            ],
+            "X-Accepted-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Content-Type-Options": [
+              "nosniff"
+            ],
+            "X-Frame-Options": [
+              "deny"
+            ],
+            "X-Github-Media-Type": [
+              "github.v3; format=json"
+            ],
+            "X-Github-Request-Id": [
+              "127B:B79B:32467BD:33180D0:6258AEE1"
+            ],
+            "X-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Ratelimit-Limit": [
+              "5000"
+            ],
+            "X-Ratelimit-Remaining": [
+              "4936"
+            ],
+            "X-Ratelimit-Reset": [
+              "1649979871"
+            ],
+            "X-Ratelimit-Resource": [
+              "core"
+            ],
+            "X-Ratelimit-Used": [
+              "64"
+            ],
+            "X-Xss-Protection": [
+              "0"
+            ]
+          },
+          "templated": false
+        }
+      },
+      {
+        "request": {
+          "path": [
+            {
+              "matcher": "exact",
+              "value": "/repos/mongulu-cm/monocle/issues"
+            }
+          ],
+          "method": [
+            {
+              "matcher": "exact",
+              "value": "GET"
+            }
+          ],
+          "destination": [
+            {
+              "matcher": "exact",
+              "value": "api.github.com"
+            }
+          ],
+          "scheme": [
+            {
+              "matcher": "exact",
+              "value": "https"
+            }
+          ],
+          "body": [
+            {
+              "matcher": "exact",
+              "value": ""
+            }
+          ],
+          "headers": {
+            "Accept": [
+              {
+                "matcher": "exact",
+                "value": "*/*"
+              }
+            ],
+            "Accept-Encoding": [
+              {
+                "matcher": "exact",
+                "value": "gzip, deflate"
+              }
+            ],
+            "Connection": [
+              {
+                "matcher": "exact",
+                "value": "keep-alive"
+              }
+            ]
+          },
+          "query": {
+            "state": [
+              {
+                "matcher": "exact",
+                "value": "open"
+              }
+            ]
+          }
+        },
+        "response": {
+          "status": 200,
+          "body": "[]",
+          "encodedBody": false,
+          "headers": {
+            "Access-Control-Allow-Origin": [
+              "*"
+            ],
+            "Access-Control-Expose-Headers": [
+              "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset"
+            ],
+            "Cache-Control": [
+              "private, max-age=60, s-maxage=60"
+            ],
+            "Content-Length": [
+              "2"
+            ],
+            "Content-Security-Policy": [
+              "default-src 'none'"
+            ],
+            "Content-Type": [
+              "application/json; charset=utf-8"
+            ],
+            "Date": [
+              "Thu, 14 Apr 2022 23:31:45 GMT"
+            ],
+            "Etag": [
+              "\"443163bb12191cf6dccc7f2d1f294fbc500c361838b6fde497ab472eeacbe9a3\""
+            ],
+            "Github-Authentication-Token-Expiration": [
+              "2022-12-30 23:00:00 UTC"
+            ],
+            "Hoverfly": [
+              "Was-Here"
+            ],
+            "Referrer-Policy": [
+              "origin-when-cross-origin, strict-origin-when-cross-origin"
+            ],
+            "Server": [
+              "GitHub.com"
+            ],
+            "Strict-Transport-Security": [
+              "max-age=31536000; includeSubdomains; preload"
+            ],
+            "Vary": [
+              "Accept, Authorization, Cookie, X-GitHub-OTP",
+              "Accept-Encoding, Accept, X-Requested-With"
+            ],
+            "X-Accepted-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Content-Type-Options": [
+              "nosniff"
+            ],
+            "X-Frame-Options": [
+              "deny"
+            ],
+            "X-Github-Media-Type": [
+              "github.v3; format=json"
+            ],
+            "X-Github-Request-Id": [
+              "127B:B79B:324685F:3318160:6258AEE1"
+            ],
+            "X-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Ratelimit-Limit": [
+              "5000"
+            ],
+            "X-Ratelimit-Remaining": [
+              "4935"
+            ],
+            "X-Ratelimit-Reset": [
+              "1649979871"
+            ],
+            "X-Ratelimit-Resource": [
+              "core"
+            ],
+            "X-Ratelimit-Used": [
+              "65"
+            ],
+            "X-Xss-Protection": [
+              "0"
+            ]
+          },
+          "templated": false
+        }
+      }
+    ],
+    "globalActions": {
+      "delays": [],
+      "delaysLogNormal": []
+    }
+  },
+  "meta": {
+    "schemaVersion": "v5.1",
+    "hoverflyVersion": "v1.3.6",
+    "timeExported": "2022-04-14T23:31:56Z"
+  }
+}

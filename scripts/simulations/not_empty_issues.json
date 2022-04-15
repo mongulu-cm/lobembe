@@ -1,0 +1,449 @@
+{
+  "data": {
+    "pairs": [
+      {
+        "request": {
+          "path": [
+            {
+              "matcher": "exact",
+              "value": "/repos/mongulu-cm/lobembe"
+            }
+          ],
+          "method": [
+            {
+              "matcher": "exact",
+              "value": "GET"
+            }
+          ],
+          "destination": [
+            {
+              "matcher": "exact",
+              "value": "api.github.com"
+            }
+          ],
+          "scheme": [
+            {
+              "matcher": "exact",
+              "value": "https"
+            }
+          ],
+          "body": [
+            {
+              "matcher": "exact",
+              "value": ""
+            }
+          ],
+          "headers": {
+            "Accept": [
+              {
+                "matcher": "exact",
+                "value": "*/*"
+              }
+            ],
+            "Accept-Encoding": [
+              {
+                "matcher": "exact",
+                "value": "gzip, deflate"
+              }
+            ],
+            "Connection": [
+              {
+                "matcher": "exact",
+                "value": "keep-alive"
+              }
+            ]
+          }
+        },
+        "response": {
+          "status": 200,
+          "body": "H4sIAAAAAAAAA+1Y3W7bNhR+FcM3u1gc2XL+aqDoLrIFG5q03TKsyDAYtERbjClRIym7tpAH6nP0xfYdUbJkr44T5TY3rULz+3h4/njOybsi7I6GZ/6gP7w4PznqJirkY1rrXl/+vPwgf5PB1Zs1+/z7Ikjm65v7X79cX16f3Kw/ve1iM4s5dko14fGEY2GaSTkuV2OVzDKZ9YLYqzekWiyYBWjKpOFHXbVMuO6OcnDMRAKuGgU6kuP8zcnF8HzY3xFt9WH+ZnXn/5Kxz2kUXsnF5D44vbmcrW/W10tAGY5hepxpCdLI2tSMPM8tmuOZsFE2yQzXgUosT+xxoGIv86qz3i3enoBjpkuWQh9Y2GFLRcnk4KAz3pb8kY3ljgju6AKwtXWqpFRLMOyK/Pgh3gZH2i84RDJrxQFc7ikbcWgNV3kgBQhjnytQgck9+g9+RCwGhtA8fKZQJQoikYs85J7mqSrosokJtEitUMlzhdvCgkvpGUvEmrXhAtaAgsR6rhgFBli+gO89F+xAuVeEUrAilWgecLGAilsR7qDBZ1cpxfWHhnZI8cLyMQtjitMifB+OEFlP8/BGCgj5xnw44w+uFyLgppNZIYX59tV0UqY7Hck7AdyZB1ZMO6nKdMf8wDKrerNvXzVSBnm7nm/yyKORWai7EW4NYYjkgAH2oRF6wEKQOV+1pSBo7uHfMlToymyiNLPqUCbYK9YWR+41/yRfsZzFbcUtsOCIlGqttQILDmFMxp/ksHtvWlAYrwqIJMMjVOStp4TBXlYHBgszRswSzttqa4PPvSqhTjRLgqg1YwXPPfdV2JPN2gpIUDBM8Dy3pcBz5hX43DMRc2+GHb9AJiIk+Baf5tOXCEjwDZ/V7S1aCEf4DRteKQvjtpWugnt5qT3JUDSxWWvCDR52pRd0xtYHa4q9kVATgI0qJS0mSMEvyEw1BcnnHnLEbGv11Qw1X1EYPF5s7L9xo7Yo7hzH4tADvZesRG958ssYyf92Wenvw1XEo0ISPPfq9OlSc0ncUpNlbq6ka9KXNXdbo1dwL/8xZTainINTUDTwlqKWaC+fMNQ0x8fHecRZUbnGXLcPRQcGC9NBhOqspXR5BUe5ETNbFMJTEi5EYSwVC9vqcYMHl7NWSwkduGnhFG1gW7EKbJMsFpIbq5LWObEmaNImCpWlCJ5S+u8Nni2O/J0RScCPmJRH8EYrAgH/RFdFxkJVx1urxIEhPNptItNccrhqWw1X8Nxz/VnIU6lWL0kiDQaKRs3R4odjZlHf+31/0Ouf9Pzz24E/8s9Gp8M77MnScGuP3+v7Pf/sdnA68i9Gwz7tSTMTNWiw5aQ3uLj1ByP/fHR6RluQEEunxRca/O9211W5T806MMZENeanGjH6/8CiRAQS3rcTHE86abH7Dj2KgmyRinmK59+NG4xY48v3z7fe8kBlCTSLgciSWRSTeD3rper9B8HHlY1UQqTMjF2MdkdWZ5i60Eqq1T26K9Ncq1NCY+NSzMUWkMqTTePlGqhagFhorcq5S4JQ3qQ/jFDKmU8oDJtIXi+olCelhNVVBgPEDPrCxEADObVYuNEslb3hcR9XKkdMVzd/dq44xgNMdj5mEwA67x2os3AbTRp+ceOsq4/vS/CjvWJ5qPEahzVGYsHZ7ZW8v/vrdH13O3/bRQeMcFfLMakBoV7pSZix5XEqm6Muq1IRQHF//3PUXQgjJuh3LV0rLSTHrVxDSZZtaKQ7Il1Upi7sHvIpy6QduyYADDFDT46A4TqGoWkuQkorW3VnctpiaVtpWQqu6ht1XeFzbiclYPeN29Etxs7/rZpzmtDhIHdn82/GEEvFO1eB3S/FEkxJ1dP2L5rTI/s9DDX31XrlKMhzGDm4a45R1JVHlT+7s1wm2eiimis2Rxev48VyNHiw0qY+dWtS8jpe3JofHxjGvo4XMUXfdaGXjBcTbpfIrI0Hrtk0lq/O4OE/NIHRbcYYAAA=",
+          "encodedBody": true,
+          "headers": {
+            "Access-Control-Allow-Origin": [
+              "*"
+            ],
+            "Access-Control-Expose-Headers": [
+              "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset"
+            ],
+            "Cache-Control": [
+              "private, max-age=60, s-maxage=60"
+            ],
+            "Content-Encoding": [
+              "gzip"
+            ],
+            "Content-Security-Policy": [
+              "default-src 'none'"
+            ],
+            "Content-Type": [
+              "application/json; charset=utf-8"
+            ],
+            "Date": [
+              "Mon, 18 Apr 2022 21:33:14 GMT"
+            ],
+            "Etag": [
+              "W/\"54cb66cc82a6e7ca00b6d8f7d446c0e2258cbdf4a7c792c0bf301e9467606342\""
+            ],
+            "Github-Authentication-Token-Expiration": [
+              "2022-12-30 23:00:00 UTC"
+            ],
+            "Hoverfly": [
+              "Was-Here"
+            ],
+            "Last-Modified": [
+              "Sat, 26 Feb 2022 15:28:30 GMT"
+            ],
+            "Referrer-Policy": [
+              "origin-when-cross-origin, strict-origin-when-cross-origin"
+            ],
+            "Server": [
+              "GitHub.com"
+            ],
+            "Strict-Transport-Security": [
+              "max-age=31536000; includeSubdomains; preload"
+            ],
+            "Vary": [
+              "Accept, Authorization, Cookie, X-GitHub-OTP",
+              "Accept-Encoding, Accept, X-Requested-With"
+            ],
+            "X-Accepted-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Content-Type-Options": [
+              "nosniff"
+            ],
+            "X-Frame-Options": [
+              "deny"
+            ],
+            "X-Github-Media-Type": [
+              "github.v3; format=json"
+            ],
+            "X-Github-Request-Id": [
+              "2AD8:99DD:2965925:2A15F6E:625DD91A"
+            ],
+            "X-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Ratelimit-Limit": [
+              "5000"
+            ],
+            "X-Ratelimit-Remaining": [
+              "4988"
+            ],
+            "X-Ratelimit-Reset": [
+              "1650318994"
+            ],
+            "X-Ratelimit-Resource": [
+              "core"
+            ],
+            "X-Ratelimit-Used": [
+              "12"
+            ],
+            "X-Xss-Protection": [
+              "0"
+            ]
+          },
+          "templated": false
+        }
+      },
+      {
+        "request": {
+          "path": [
+            {
+              "matcher": "exact",
+              "value": "/repos/mongulu-cm/lobembe/issues"
+            }
+          ],
+          "method": [
+            {
+              "matcher": "exact",
+              "value": "GET"
+            }
+          ],
+          "destination": [
+            {
+              "matcher": "exact",
+              "value": "api.github.com"
+            }
+          ],
+          "scheme": [
+            {
+              "matcher": "exact",
+              "value": "https"
+            }
+          ],
+          "body": [
+            {
+              "matcher": "exact",
+              "value": ""
+            }
+          ],
+          "headers": {
+            "Accept": [
+              {
+                "matcher": "exact",
+                "value": "*/*"
+              }
+            ],
+            "Accept-Encoding": [
+              {
+                "matcher": "exact",
+                "value": "gzip, deflate"
+              }
+            ],
+            "Connection": [
+              {
+                "matcher": "exact",
+                "value": "keep-alive"
+              }
+            ]
+          },
+          "query": {
+            "state": [
+              {
+                "matcher": "exact",
+                "value": "open"
+              }
+            ]
+          }
+        },
+        "response": {
+          "status": 200,
+          "body": "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",
+          "encodedBody": true,
+          "headers": {
+            "Access-Control-Allow-Origin": [
+              "*"
+            ],
+            "Access-Control-Expose-Headers": [
+              "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset"
+            ],
+            "Cache-Control": [
+              "private, max-age=60, s-maxage=60"
+            ],
+            "Content-Encoding": [
+              "gzip"
+            ],
+            "Content-Security-Policy": [
+              "default-src 'none'"
+            ],
+            "Content-Type": [
+              "application/json; charset=utf-8"
+            ],
+            "Date": [
+              "Mon, 18 Apr 2022 21:33:14 GMT"
+            ],
+            "Etag": [
+              "W/\"288c189c1a3350d5036d8cf8d89c006559a215c1ac92d411af5d88a8e96e00ac\""
+            ],
+            "Github-Authentication-Token-Expiration": [
+              "2022-12-30 23:00:00 UTC"
+            ],
+            "Hoverfly": [
+              "Was-Here"
+            ],
+            "Referrer-Policy": [
+              "origin-when-cross-origin, strict-origin-when-cross-origin"
+            ],
+            "Server": [
+              "GitHub.com"
+            ],
+            "Strict-Transport-Security": [
+              "max-age=31536000; includeSubdomains; preload"
+            ],
+            "Vary": [
+              "Accept, Authorization, Cookie, X-GitHub-OTP",
+              "Accept-Encoding, Accept, X-Requested-With"
+            ],
+            "X-Accepted-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Content-Type-Options": [
+              "nosniff"
+            ],
+            "X-Frame-Options": [
+              "deny"
+            ],
+            "X-Github-Media-Type": [
+              "github.v3; format=json"
+            ],
+            "X-Github-Request-Id": [
+              "2AD8:99DD:2965994:2A15FD4:625DD91A"
+            ],
+            "X-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Ratelimit-Limit": [
+              "5000"
+            ],
+            "X-Ratelimit-Remaining": [
+              "4987"
+            ],
+            "X-Ratelimit-Reset": [
+              "1650318994"
+            ],
+            "X-Ratelimit-Resource": [
+              "core"
+            ],
+            "X-Ratelimit-Used": [
+              "13"
+            ],
+            "X-Xss-Protection": [
+              "0"
+            ]
+          },
+          "templated": false
+        }
+      },
+      {
+        "request": {
+          "path": [
+            {
+              "matcher": "exact",
+              "value": "/repos/mongulu-cm/lobembe/issues/3/events"
+            }
+          ],
+          "method": [
+            {
+              "matcher": "exact",
+              "value": "GET"
+            }
+          ],
+          "destination": [
+            {
+              "matcher": "exact",
+              "value": "api.github.com"
+            }
+          ],
+          "scheme": [
+            {
+              "matcher": "exact",
+              "value": "https"
+            }
+          ],
+          "body": [
+            {
+              "matcher": "exact",
+              "value": ""
+            }
+          ],
+          "headers": {
+            "Accept": [
+              {
+                "matcher": "exact",
+                "value": "application/vnd.github.sailor-v-preview+json"
+              }
+            ],
+            "Accept-Encoding": [
+              {
+                "matcher": "exact",
+                "value": "gzip, deflate"
+              }
+            ],
+            "Connection": [
+              {
+                "matcher": "exact",
+                "value": "keep-alive"
+              }
+            ]
+          }
+        },
+        "response": {
+          "status": 200,
+          "body": "H4sIAAAAAAAAA+1aYW/aMBD9L/lc6sQJSYg0TWi0UzXRqhu0a6cJheAGd0kcxQmsRf3vO4dACQVGAE3t6n6hCr7nl8N3vnv2j4lCB4pTt01Nsw1bNY6UiA1ITzxUmie9oNm6OL29OrnkRk07+3X9OG7C3+ngOu7+Uo6ULAlg3DBNY+4g5Mb02KfpMOsfeyxECYkZRyGL/CzIal6IAtYnYZ8gynlGOCIjEqUcPc8NgK6XskRxJkrAfBoBdp8GQUhSN/JDBt8LXriumyZWrUWq7dalefX9PPDuz7T24w1u3zd1ATdyUzfpLdHMH/KCasZJ4rEoBS456wzN8D+OPhiA4ScFSu6Tv720gONoifUwDYMlEgt+Whp8x4KAjQFlmXbZuy8nQnNLIDn9n0b+jihgOUEsHRLwHrzSk3AE5Wl1UrnVBIkPWFUCh4P3EzKoTKywA1rjCBhN8gWWA2Z97iU0TimLqhMsWQMaS3w3oo/ubmhgzQEkX/uV3zC3AutpZFQ2n5pNUJzQkes9CNckxCN0BM7eEXLJHhDTh5hAHHRhUQjX05T03EEoYvXODTh5KtjDEJdz6kdkAMMgsEIqfn/FibIgmD/IA7N4khA3BaJuCqZYxbimajXV7mjYMQxHs28BpkCE+WWCkAliOdEimSAWt98VG8QrSRBFGMt9Xu7zaMUqlWH8NsI4JskdS0LYs0fU7U0L2p4bx9Md/emoaC0aWLUtvWHhxXr909rWwjevdBX2+oO0FvO5RfEgWwvZWuQd3osWTVYOpcZ9hYNeSeWQ04D+wAsY36ux0BodjB2t4WiWaCy2TmW6rhmmXZIevp6szWXDVjzqHS6XFZPLXCaUIJnLZC7LBcS3LpMkhMVkP5kEqx214WDNwblMsl02M7W6aulGw95S882i9rezAyWz57lXJbPP5xdfmm34RuhFpqoZmm3Zq9Xem3G7c/n7ouUJpXYntXeGv4faO+e7WeedD6uUuqZWu2u7Jft9VN0CaC89t8A4XIc3A1xUgGElVNZwC5yq6m1hVl23LQwPU1bNWZS0XnDDP9RqcQ1bHc12dOzU6+u02ilRGdh5A1L8ajsf2pTsZWC/OH6cdjHvNbClxiqbhNlB/Ip+/nA78OLpNZJnqRt8vstZ6palvN7Auq7DHY7FKrl7vlaYaDTVrji+PYTIas4nl7X82rswpc1IbvlLN4VK3tk7h7zXLX8mjmbR3jcvjJpqCYFUtRxDldX8xjQpQ3vTJUAZ2vMTpz3adFnNy2p+Q2Upq/n/4sbEzz/yvdlSji0AAA==",
+          "encodedBody": true,
+          "headers": {
+            "Access-Control-Allow-Origin": [
+              "*"
+            ],
+            "Access-Control-Expose-Headers": [
+              "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset"
+            ],
+            "Cache-Control": [
+              "private, max-age=60, s-maxage=60"
+            ],
+            "Content-Encoding": [
+              "gzip"
+            ],
+            "Content-Security-Policy": [
+              "default-src 'none'"
+            ],
+            "Content-Type": [
+              "application/json; charset=utf-8"
+            ],
+            "Date": [
+              "Mon, 18 Apr 2022 21:33:14 GMT"
+            ],
+            "Etag": [
+              "W/\"adeb9caa80ec3add29e8ddada55190762be8e6ac155f6ed28bf3c8e9c3ebe320\""
+            ],
+            "Github-Authentication-Token-Expiration": [
+              "2022-12-30 23:00:00 UTC"
+            ],
+            "Hoverfly": [
+              "Was-Here"
+            ],
+            "Referrer-Policy": [
+              "origin-when-cross-origin, strict-origin-when-cross-origin"
+            ],
+            "Server": [
+              "GitHub.com"
+            ],
+            "Strict-Transport-Security": [
+              "max-age=31536000; includeSubdomains; preload"
+            ],
+            "Vary": [
+              "Accept, Authorization, Cookie, X-GitHub-OTP",
+              "Accept-Encoding, Accept, X-Requested-With"
+            ],
+            "X-Accepted-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Content-Type-Options": [
+              "nosniff"
+            ],
+            "X-Frame-Options": [
+              "deny"
+            ],
+            "X-Github-Media-Type": [
+              "github.v3; param=sailor-v-preview; format=json"
+            ],
+            "X-Github-Request-Id": [
+              "2AD8:99DD:29659F2:2A1603E:625DD91A"
+            ],
+            "X-Oauth-Scopes": [
+              "repo"
+            ],
+            "X-Ratelimit-Limit": [
+              "5000"
+            ],
+            "X-Ratelimit-Remaining": [
+              "4986"
+            ],
+            "X-Ratelimit-Reset": [
+              "1650318994"
+            ],
+            "X-Ratelimit-Resource": [
+              "core"
+            ],
+            "X-Ratelimit-Used": [
+              "14"
+            ],
+            "X-Xss-Protection": [
+              "0"
+            ]
+          },
+          "templated": false
+        }
+      }
+    ],
+    "globalActions": {
+      "delays": [],
+      "delaysLogNormal": []
+    }
+  },
+  "meta": {
+    "schemaVersion": "v5.1",
+    "hoverflyVersion": "v1.3.6",
+    "timeExported": "2022-04-18T21:33:22Z"
+  }
+}

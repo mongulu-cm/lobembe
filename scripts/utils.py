@@ -1,4 +1,31 @@
-def construct_message(today, last_sunday):
+from littletable import Table
+import itertools
+from thefuzz import process
+
+def retrieve_assigned_issues(issues):
+    """The funtion retrives the data of issues and returns an array"""
+
+    assigned_issues = []
+
+    for i in issues:
+        if len(i.assignees) == 0 :
+            continue
+
+        for j in i.get_events():
+            if j.assignee is not None:
+                assigned_date = j.created_at
+                break
+
+        issue = {"Title": i.title, "Assignees": [name.login for name in i.assignees],
+                 "CreatedAt": i.created_at.strftime("%d-%m-%G"), "Url": i.html_url,
+                 "AssignedAt" : assigned_date.strftime("%d-%m-%G") }
+
+        assigned_issues.append(issue)
+
+    return assigned_issues
+
+
+def construct_meeting_message(today, last_sunday):
 
     message = "" # message will be empty for saturday/sunday that are not near to meeting date
 
@@ -12,9 +39,69 @@ def construct_message(today, last_sunday):
     elif today.day == last_sunday - 1:
         message = ":alert: Rappel :alert: Le meeting c'est demain à 18h http://lobembe.mongulu.cm/?q=meet"
     elif today.day == last_sunday - 3:
-        message = ":alert: Rappel :alert: Le meeting de ce mois c'est :date: ce dimanche de 18 à 19h30 :date"
+        message = ":alert: Rappel :alert: Le meeting de ce mois c'est :date: ce dimanche de 18 à 19h30 :date:"
     elif today.weekday() == 3:
         message = ":alert: Rappel :alert: Le meeting de ce mois c'est :date:  dimanche " + str(
-            last_sunday) + " de 18 à 19h30 :date"
+            last_sunday) + " de 18 à 19h30 :date:"
 
     return message
+
+
+def construct_issue_message(issues):
+
+    message = f":warning: Tu as actuellement {len(issues)} issue(s) en cours: \n \n"
+    for issue in issues:
+        message = message + f"* [{issue.Title}]({issue.Url}) qui t'est assigné depuis le :date: **{issue.AssignedAt}** \n"
+
+    return message + "\n Essaie de trouver du temps pour ça :pray: :pray:"
+
+def construct_assigned_issues(table):
+    messages =["Les utilisateurs suivant n'ont pas reçu de rappel car la correspodance a échoué",
+               table, ":bangbang:  **IL FAUT DEMANDER AUX UTILISATEURS DE CHANGER LEUR NOM ZULIP**"]
+    return messages
+
+
+def get_table_open_issues(github_client):
+    issues = []
+    org = github_client.get_organization("mongulu-cm")
+    for repo in org.get_repos():
+        repo_issues = retrieve_assigned_issues(repo.get_issues(state="open"))
+        issues.append(repo_issues)
+
+    flatten_issues = list(itertools.chain(*issues))
+    t1 = Table("open_issues")
+    t1.insert_many(flatten_issues)
+    return t1
+
+
+def get_table_zulip_members(zulip_client):
+    result = zulip_client.get_members()
+    t2 = Table("zulip_users").insert_many(result["members"]) \
+        .where(is_bot=False) \
+        .select("full_name user_id")
+    return t2
+
+
+def get_assigned_users(t1,names):
+    import itertools
+    assignees = set(list(itertools.chain(*list(t1.all.Assignees))))
+    ignored_assignees = [{"assignnee": x, "correspondance": process.extractOne(x, names)}
+                         for x in assignees if process.extractOne(x, names)[1] < 68]
+    for x in ignored_assignees:
+        assignees.remove(x['assignnee'])
+
+    return assignees,ignored_assignees
+
+
+def get_names(t2):
+    names = list(t2.all.full_name)
+    return names
+
+
+def get_table_ignored_assignees(ignored_assignees):
+    t3 = Table("igonred_assigned").insert_many(ignored_assignees)
+    return t3
+
+
+def get_zulip_id_from_assignee(t2,names,assignee):
+    return t2.where(full_name=process.extractOne(assignee, names)[0])[0].user_id

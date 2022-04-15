@@ -8,6 +8,19 @@ on:
 jobs:
   unittest:
     runs-on: ubuntu-latest
+
+    services:
+      hoverfly:
+        image: spectolabs/hoverfly:v1.3.2
+        ports:
+          - 8500:8500
+          - 8888:8888
+
+    env:
+      HOVERFLY_HOST: localhost
+      HOVERFLY_PROXY_PORT: 8500
+      HOVERFLY_ADMIN_PORT: 8888
+
     steps:
     - name: Check out repo
       uses: actions/checkout@v2
@@ -25,5 +38,10 @@ jobs:
     - name: Install Python dependencies
       run: |
         pip install -r scripts/requirements.txt
+        pip install -r scripts/requirements-dev.txt
     - name: test remind utils functions
-      run: cd scripts &&  python -m unittest test_reminder.py
+      env:
+        GH_TOKEN : ${{ secrets.GH_TOKEN }}
+        API_KEY: ${{ secrets.ZULIP_API_KEY }}
+      run: |
+        cd scripts &&  pytest test_reminder.py
