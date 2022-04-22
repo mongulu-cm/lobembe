@@ -1,5 +1,6 @@
 import datetime
 import calendar
+import sys
 import zulip
 from decouple import config
 from github import Github
@@ -7,6 +8,8 @@ from utils import construct_meeting_message, get_table_open_issues, get_table_zu
     get_assigned_users, construct_assigned_issues, get_table_ignored_assignees, get_zulip_id_from_assignee, get_names
 from rich.traceback import install
 install(show_locals=True)
+from rich.console import Console
+console = Console()
 
 today = datetime.datetime.now()
 month = calendar.monthcalendar(today.year, today.month)
@@ -14,7 +17,7 @@ last_sunday = max(month[-1][calendar.SUNDAY], month[-2][calendar.SUNDAY])
 
 # Pass the path to your zuliprc file here.
 client = zulip.Client(email="reminder-bot@mongulu.zulipchat.com", api_key=config('API_KEY'),
-                      site="http://mongulu.zulipchat.com",insecure=True)
+                      site="https://mongulu.zulipchat.com")
 
 token = config("GH_TOKEN")
 g = Github(token,verify=False)
@@ -35,26 +38,29 @@ try:
             message = construct_issue_message([x for x in t1.where(lambda o: assignee in o.Assignees)])
             id = get_zulip_id_from_assignee(t2, names, assignee)
             request = {"type": "private", "to": [id], "content": f" {message}"}
-            print(request)
-            # client.send_message(request)
+            result = client.send_message(request)
+            print(f"👉 {result}")
+
 
         t3 = get_table_ignored_assignees(ignored_assignees)
         messages = construct_assigned_issues(t3.as_markdown())
         for message in messages:
             request = {"type": "private", "to": [470841], "content": f"{message}"}
-            # client.send_message(request)
-            print(request)
+            result = client.send_message(request)
+            print(f"👉 {result}")
 
     else:
 
         message = construct_meeting_message(today, last_sunday)
         if message != "":
             request = {"type": "stream", "to": "general", "topic": "meeting", "content": " {} ".format(message)}
-            print(request)
-            #client.send_message(request)
+            result = client.send_message(request)
+            print(f"👉 {result}")
+
 
 except Exception:
     console.print_exception(show_locals=True)
+    sys.exit(-1)
 
 
 
