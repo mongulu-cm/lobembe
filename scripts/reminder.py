@@ -41,13 +41,13 @@ try:
             result = client.send_message(request)
             print(f"👉 {result}")
 
-
-        t3 = get_table_ignored_assignees(ignored_assignees)
-        messages = construct_assigned_issues(t3.as_markdown())
-        for message in messages:
-            request = {"type": "private", "to": [470841], "content": f"{message}"}
-            result = client.send_message(request)
-            print(f"👉 {result}")
+        if len(ignored_assignees) != 0:
+            t3 = get_table_ignored_assignees(ignored_assignees)
+            messages = construct_assigned_issues(t3.as_markdown())
+            for message in messages:
+                request = {"type": "private", "to": [470841], "content": f"{message}"}
+                result = client.send_message(request)
+                print(f"👉 {result}")
 
     else:
 
