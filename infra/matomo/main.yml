@@ -1,0 +1,32 @@
+---
+- name: Install system requirement for matomo
+  become: true
+  hosts: matomo.mongulu.cm
+  tasks:
+    - apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - nginx
+        - php
+        - php-fpm
+  roles:
+    - role: mysql
+      become: yes
+
+- name: Install Matomo
+  become: true
+  hosts: matomo.mongulu.cm
+  roles:
+    - role: matomo
+      become: true
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+        matomo_domain: matomo.mongulu.cm
+        matomo_protocol: https
+        matomo_https_certificate_admin_email: general.4ba9da54de788677fa6b62cca72ddfe0.show-sender@streams.zulipchat.com
+        matomo_superuser_password: 0Yfrp9%#Crzv
+        matomo_timezone: "Europe/Paris"
+        matomo_configure_web_server: yes
+        matomo_hosted_site_domain: "matomo.mongulu.cm"
+        matomo_hosted_site_protocol: "http"

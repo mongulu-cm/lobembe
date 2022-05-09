@@ -1,14 +1,14 @@
 resource "aws_s3_bucket" "website" {
   bucket = var.website_bucket_name
-  acl = "public-read"
+  acl    = "public-read"
 
-  tags  = {
+  tags = {
     Name = "Community"
   }
 
   cors_rule {
     allowed_headers = ["*"]
-    allowed_methods = ["PUT","POST","GET"]
+    allowed_methods = ["PUT", "POST", "GET"]
     allowed_origins = ["*"]
   }
 

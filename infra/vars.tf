@@ -1,9 +1,9 @@
 variable "website_bucket_name" {
-  type = string
+  type    = string
   default = "lobembe.mongulu.cm"
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "eu-central-1"
 }
