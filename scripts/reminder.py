@@ -31,7 +31,7 @@ g = Github(token,verify=False)
 
 try:
 
-    if config("REMINDER_TYPE", default="") == "ISSUES":
+    if config("REMINDER_TYPE", default="") == "ISSUES" and today.weekday() == 3:
 
         t1 = get_table_open_issues(g)
         t1.present()
@@ -63,7 +63,7 @@ try:
         if message != "":
             zulip_ids = get_table_zulip_members(client).all.user_id
             for zulip_id in zulip_ids:
-                request = {"type": "stream", "to": [zulip_id], "content": f" {message} "}
+                request = {"type": "private", "to": [zulip_id], "content": f" {message} "}
                 result = client.send_message(request)
                 logger.info(f"👉 {result}")
 
