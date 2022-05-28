@@ -4,3 +4,5 @@ python-decouple==3.6
 rich==12.2.0
 littletable== 2.0.6
 thefuzz == 0.19.0
+loguru == 0.6.0 # notifiers integrated
+python-Levenshtein==0.12.2

@@ -47,7 +47,7 @@ try:
             zulip_id = get_zulip_id_from_assignee(t2, names, assignee)
             request = {"type": "private", "to": [zulip_id], "content": f" {message}"}
             result = client.send_message(request)
-            print(f"👉 {result}")
+            logger.info(f"👉 {result}")
 
         if len(ignored_assignees) != 0:
             t3 = get_table_ignored_assignees(ignored_assignees)
@@ -55,7 +55,7 @@ try:
             for message in messages:
                 request = {"type": "private", "to": [470841], "content": f"{message}"}
                 result = client.send_message(request)
-                print(f"👉 {result}")
+                logger.info(f"👉 {result}")
 
     else:
 
@@ -64,7 +64,7 @@ try:
             request = {"type": "stream", "to": "general", "topic": "meeting", "content": f" {message} "}
 
             result = client.send_message(request)
-            print(f"👉 {result}")
+            logger.info(f"👉 {result}")
 
 
 except Exception:
