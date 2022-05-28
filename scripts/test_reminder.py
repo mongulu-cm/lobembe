@@ -58,15 +58,13 @@ def test_sunday():
 @pytest.fixture()
 def github_client():
     token = config("GH_TOKEN")
-    g = Github(token,verify=False)
-    return g
+    return Github(token,verify=False)
 
 @pytest.fixture()
 @hoverfly('reminder_issues')
 def zulip_client():
-    z = zulip.Client(email="reminder-bot@mongulu.zulipchat.com", api_key=config('API_KEY'),
-                      site="http://mongulu.zulipchat.com",insecure=True)
-    return  z
+    return zulip.Client(email="reminder-bot@mongulu.zulipchat.com", api_key=config('API_KEY'),
+                        site="http://mongulu.zulipchat.com", insecure=True)
 
 
 @hoverfly('not_empty_issues',record=True)
@@ -125,7 +123,8 @@ def test_issues_messages(github_client,zulip_client):
     messages = construct_assigned_issues(t3.as_markdown())
     assert messages[1] == '| assignnee (github) | correspondance (zulip) |\n|---|---|\n| billmetangmo | (\'TCHAPTCHET NOUDJET CHRISTIAN IGOR\', 45) |\n'
 
-    message = construct_issue_message([x for x in t1.where(lambda o: assignees[0] in o.Assignees)])
+    message = construct_issue_message(list(t1.where(lambda o: assignees[0] in o.Assignees)))
+
     assert message == ":warning: Tu as actuellement 1 issue(s) en cours: \n \n" + \
     "* [Alternative à monocle ( car il supporte juste les merge)](https://github.com/mongulu-cm/lobembe/issues/3)"+ \
     " qui t'est assigné depuis le :date: **08-01-2022** \n"+ \

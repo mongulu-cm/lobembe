@@ -32,9 +32,7 @@ def construct_meeting_message(today, last_sunday):
     message = "" # message will be empty for saturday/sunday that are not near to meeting date
 
     if today.day == last_sunday:
-        if int(today.hour) == 9:
-            message = ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h http://lobembe.mongulu.cm/?q=meet"
-        elif int(today.hour) == 13:
+        if int(today.hour) in {9, 13}:
             message = ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h http://lobembe.mongulu.cm/?q=meet"
         elif int(today.hour) == 16:
             message = ":alert: Le meeting c'est maintenant http://lobembe.mongulu.cm/?q=meet :alert: "
@@ -53,14 +51,14 @@ def construct_issue_message(issues):
 
     message = f":warning: Tu as actuellement {len(issues)} issue(s) en cours: \n \n"
     for issue in issues:
-        message = message + f"* [{issue.Title}]({issue.Url}) qui t'est assigné depuis le :date: **{issue.AssignedAt}** \n"
+        message = f"{message}* [{issue.Title}]({issue.Url}) qui t'est assigné depuis le :date: **{issue.AssignedAt}** \n"
+
 
     return message + "\n Essaie de trouver du temps pour ça :pray: :pray:"
 
 def construct_assigned_issues(table):
-    messages =["Les utilisateurs suivant n'ont pas reçu de rappel car la correspodance a échoué",
-               table, ":bangbang:  **IL FAUT DEMANDER AUX UTILISATEURS DE CHANGER LEUR NOM ZULIP**"]
-    return messages
+    return ["Les utilisateurs suivant n'ont pas reçu de rappel car la correspodance a échoué", table,
+            ":bangbang:  **IL FAUT DEMANDER AUX UTILISATEURS DE CHANGER LEUR NOM ZULIP**"]
 
 
 def get_table_open_issues(github_client):
@@ -78,10 +76,9 @@ def get_table_open_issues(github_client):
 
 def get_table_zulip_members(zulip_client):
     result = zulip_client.get_members()
-    t2 = Table("zulip_users").insert_many(result["members"]) \
-        .where(is_bot=False) \
-        .select("full_name user_id")
-    return t2
+    return Table("zulip_users").insert_many(result["members"])\
+                               .where(is_bot=False)\
+                               .select("full_name user_id")
 
 
 def get_assigned_users(t1,names):
@@ -96,13 +93,11 @@ def get_assigned_users(t1,names):
 
 
 def get_names(t2):
-    names = list(t2.all.full_name)
-    return names
+    return list(t2.all.full_name)
 
 
 def get_table_ignored_assignees(ignored_assignees):
-    t3 = Table("igonred_assigned").insert_many(ignored_assignees)
-    return t3
+    return Table("igonred_assigned").insert_many(ignored_assignees)
 
 
 def get_zulip_id_from_assignee(t2,names,assignee):
