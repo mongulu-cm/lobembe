@@ -1,6 +1,8 @@
-from littletable import Table
 import itertools
+
+from littletable import Table
 from thefuzz import process
+
 
 def retrieve_assigned_issues(issues):
     """The funtion retrives the data of issues and returns an array"""

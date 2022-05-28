@@ -1,5 +1,10 @@
-pytest==7.1.1
+pytest==7.1.2
 pytest-hoverfly==5.0.2
 pip-autoremove==0.10.0
 pyinstrument== 4.1.1
 memory-profiler==0.60.0
+#bandit==1.7.4
+#pynguin==0.17.0
+#hypothesis==6.46.7
+#mypy==0.960
+isort==5.10.1 # Github action/ isort easy

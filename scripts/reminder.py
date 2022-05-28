@@ -1,14 +1,21 @@
-import datetime
 import calendar
+import datetime
 import sys
+
 import zulip
 from decouple import config
 from github import Github
-from utils import construct_meeting_message, get_table_open_issues, get_table_zulip_members, construct_issue_message, \
-    get_assigned_users, construct_assigned_issues, get_table_ignored_assignees, get_zulip_id_from_assignee, get_names
+from loguru import logger
 from rich.traceback import install
+
+from utils import (construct_assigned_issues, construct_issue_message,
+                   construct_meeting_message, get_assigned_users, get_names,
+                   get_table_ignored_assignees, get_table_open_issues,
+                   get_table_zulip_members, get_zulip_id_from_assignee)
+
 install(show_locals=True)
 from rich.console import Console
+
 console = Console()
 
 today = datetime.datetime.now()
@@ -35,9 +42,10 @@ try:
         assignees, ignored_assignees = get_assigned_users(t1, names)
 
         for assignee in assignees:
-            message = construct_issue_message([x for x in t1.where(lambda o: assignee in o.Assignees)])
-            id = get_zulip_id_from_assignee(t2, names, assignee)
-            request = {"type": "private", "to": [id], "content": f" {message}"}
+            message = construct_issue_message(list(t1.where(lambda o: assignee in o.Assignees)))
+
+            zulip_id = get_zulip_id_from_assignee(t2, names, assignee)
+            request = {"type": "private", "to": [zulip_id], "content": f" {message}"}
             result = client.send_message(request)
             print(f"👉 {result}")
 
@@ -53,7 +61,8 @@ try:
 
         message = construct_meeting_message(today, last_sunday)
         if message != "":
-            request = {"type": "stream", "to": "general", "topic": "meeting", "content": " {} ".format(message)}
+            request = {"type": "stream", "to": "general", "topic": "meeting", "content": f" {message} "}
+
             result = client.send_message(request)
             print(f"👉 {result}")
 

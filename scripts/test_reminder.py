@@ -1,12 +1,17 @@
 import datetime
-from utils import construct_meeting_message, retrieve_assigned_issues, construct_issue_message, \
-    construct_assigned_issues, get_table_open_issues, get_table_zulip_members, get_assigned_users, \
-    get_table_ignored_assignees, get_zulip_id_from_assignee, get_names
+
+import pytest
+import zulip
 from decouple import config
 from github import Github
 from pytest_hoverfly import hoverfly
-import pytest
-import zulip
+
+from utils import (construct_assigned_issues, construct_issue_message,
+                   construct_meeting_message, get_assigned_users, get_names,
+                   get_table_ignored_assignees, get_table_open_issues,
+                   get_table_zulip_members, get_zulip_id_from_assignee,
+                   retrieve_assigned_issues)
+
 
 def test_thrusday():
     last_sunday = 27
