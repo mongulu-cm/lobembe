@@ -67,7 +67,7 @@ def zulip_client():
                         site="http://mongulu.zulipchat.com", insecure=True)
 
 
-@hoverfly('not_empty_issues',record=True)
+@hoverfly('not_empty_issues')
 def test_not_empty_issues(github_client):
 
     # Getting the repo based on the info from command line
