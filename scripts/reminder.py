@@ -61,10 +61,11 @@ try:
 
         message = construct_meeting_message(today, last_sunday)
         if message != "":
-            request = {"type": "stream", "to": "general", "topic": "meeting", "content": f" {message} "}
-
-            result = client.send_message(request)
-            logger.info(f"👉 {result}")
+            zulip_ids = get_table_zulip_members(client).all.user_id
+            for zulip_id in zulip_ids:
+                request = {"type": "stream", "to": [zulip_id], "content": f" {message} "}
+                result = client.send_message(request)
+                logger.info(f"👉 {result}")
 
 
 except Exception:
