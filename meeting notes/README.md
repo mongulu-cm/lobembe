@@ -1,6 +1,25 @@
 # Notes
 
 <details>
+<summary>Juin</summary>
+<br>
+Présence: 6 personnes
+
+Supprimé malencontreusement
+<br>
+</details>
+
+
+<details>
+<summary>Mai</summary>
+<br>
+Présence: 4 personnes
+
+Supprimé malencontreusement
+<br>
+</details>
+
+<details>
 <summary>Mars</summary>
 <br>
 Présence: 6 personnes
