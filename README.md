@@ -1,24 +1,24 @@
 # lòbèmbè
-> Langue [Baka](https://fr.wikipedia.org/wiki/Baka_(langue_oubanguienne)) siginifiant une demi-hutte souvent rectangulaire et largement ouverte
+> [Baka](https://fr.wikipedia.org/wiki/Baka_(langue_oubanguienne)) language meaning a half-hut, often rectangular and wide open
 
- Donne accès aux services utilisés en interne par le collectif mongulu pour communication:
+ Provides access to services used internally by the mongulu collective for communication:
   - http://lobembe.mongulu.cm/?q=notes  
   - http://lobembe.mongulu.cm/?q=meet
   - http://lobembe.mongulu.cm/?q=tasks
   - http://lobembe.mongulu.cm/?q=videos
 
-### Prérequis
-Sur le cloud AWS:
-* Un enregistrement DNS dans Route 53 reliant le sous-domaine www.xxxx.yyy  renseigné par la variable `website_bucket_name` 
+### Prerequisites
+On the AWS cloud:
+* A DNS record in Route 53 linking the subdomain www.xxxx.yyy filled in by the `website_bucket_name` variable 
 
-Sur votre poste : 
+On your computer : 
 * aws-cli / git
 * terraform
 * ansible
 
-### Déploiement
+### Deployment
 
-#### Site web
+#### website
 ```
   terraform apply
   aws s3 sync --delete html/ s3://lobembe.mongulu.cm
@@ -26,22 +26,21 @@ Sur votre poste :
 
 #### Matomo analytics
 
-Dans notre cas, nous l'avons déployé sur une instance Oracle Cloud (image ubuntu) en bénéficiant de l'option [always free tier](https://www.oracle.com/cloud/free/)
-de 2 instances d'1 Go RAM/ adresses IP publiques. Il faut donc au préalable [ouvrir les flux HTTP/HTTPS](https://youtu.be/yWVD6qmQrb8?t=480) puis:
+In our case, we deployed it on an Oracle Cloud instance (ubuntu image) with the option [always free tier](https://www.oracle.com/cloud/free/)
+2 instances of 1 GB RAM/public IP addresses. We must first [open HTTP/HTTPS](https://youtu.be/yWVD6qmQrb8?t=480) then:
 ```
   sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
   sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
-``` 
-sur l'instance.
+```
 
-Il ne vous reste plus qu'à installer matomo:
+All you have to do next is to install matomo:
 ```
   export ANSIBLE_CONFIG=./ansible.cfg
   ansible-playbook main.yml
   ansible-playbook main.yml (la dernière tâche du playbook échouera, re-éxécutez la juste)
 ``` 
 
-Vous devriez avoir une erreur 503 en accédant à votre site. Pour corriger cela, éxécutez sur l'instance:
+You should get a 503 error when accessing your site. To correct this, run on the instance:
 ```
   sudo systemctl status php7.4-fpm.service
   sudo systemctl restart nginx
