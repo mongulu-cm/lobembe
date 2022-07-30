@@ -24,6 +24,12 @@ On your computer :
   aws s3 sync --delete html/ s3://lobembe.mongulu.cm
 ```    
 
+### Tests
+```
+  cd scripts/
+  pytest test_reminder.py
+```  
+
 #### Matomo analytics
 
 In our case, we deployed it on an Oracle Cloud instance (ubuntu image) with the option [always free tier](https://www.oracle.com/cloud/free/)
