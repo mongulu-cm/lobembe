@@ -36,6 +36,7 @@ In our case, we deployed it on an Oracle Cloud instance (ubuntu image) with the 
 All you have to do next is to install matomo:
 ```
   export ANSIBLE_CONFIG=./ansible.cfg
+  ansible-galaxy install -r requirements.yml
   ansible-playbook main.yml
   ansible-playbook main.yml (la dernière tâche du playbook échouera, re-éxécutez la juste)
 ``` 
