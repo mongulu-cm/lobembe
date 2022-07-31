@@ -77,8 +77,9 @@ else:
         next(reader)
         for row in reader:
             try:
-                client.messages.create(to=f"+33{row[3][1:]}", from_="+16625000434",
-                                       body=sms_message)
+                message = f"Hello {row[1]}, {sms_message}"
+                twilio_client.messages.create(to=f"+33{row[3][1:]}", from_="+16625000434",
+                                             body=message)
             except TwilioRestException as exc:
                 if exc.status == 400:
                     print(f"message failed to sent to {row[0]} {row[1]} because not registered")
