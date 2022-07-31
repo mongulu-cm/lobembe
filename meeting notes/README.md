@@ -1,6 +1,6 @@
 # Notes
 
-details>
+<details>
 <summary>Juillet</summary>
 <br>
 Présence: 4 personnes
@@ -27,8 +27,6 @@ Présence: 4 personnes
 ## Partenariats
 Oki pour le partenariat avec ENSPY Alumni
 
-
-```
 <br>
 </details>
 
