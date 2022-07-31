@@ -35,8 +35,6 @@ def construct_meeting_message(today, last_sunday):
         if int(today.hour) in {9, 13}:
             zulip_message = ":alert: Rappel :alert: Le meeting c'est tout à l'heure à 18h http://lobembe.mongulu.cm/?q=meet"
             sms_message = zulip_message
-        elif int(today.hour) == 16:
-            zulip_message = ":alert: Le meeting c'est maintenant http://lobembe.mongulu.cm/?q=meet :alert: "
     elif today.day == last_sunday - 1:
         zulip_message = ":alert: Rappel :alert: Le meeting c'est demain à 18h http://lobembe.mongulu.cm/?q=meet"
         sms_message = zulip_message

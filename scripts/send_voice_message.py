@@ -25,13 +25,15 @@ next(reader)
 
 
 def send_voice_message():
-
     response = VoiceResponse()
     response.say("La réunion du collectif c'est maintenant", voice='woman', language='fr-FR')
 
     for row in reader:
         try:
+            message = f"Hello {row[1]}, la réunion du collectif c'est maintenant https://meet.jit.si/mongulu"
             client.calls.create(to=f"+33{row[3][1:]}", from_="+16625000434", twiml=response)
+            client.messages.create(to=f"+33{row[3][1:]}", from_="+16625000434",
+                                   body=message)
         except TwilioRestException as exc:
             if exc.status == 400:
                 print(f"voice message failed to sent to {row[0]} {row[1]} because not registered")

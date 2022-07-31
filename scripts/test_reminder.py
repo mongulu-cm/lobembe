@@ -47,10 +47,6 @@ def test_sunday():
     today = datetime.datetime(2022, 2, 27, 13, 00, 30)
     assert construct_meeting_message(today, last_sunday) == (msg1, msg1)
 
-    today = datetime.datetime(2022, 2, 27, 16, 45, 30)
-    assert construct_meeting_message(today, last_sunday) == \
-           (":alert: Le meeting c'est maintenant http://lobembe.mongulu.cm/?q=meet :alert: ", "")
-
     for day in [6, 13, 20]:
         today = datetime.date(2022, 2, day)
         assert construct_meeting_message(today, last_sunday) == ("","")
