@@ -1,5 +1,38 @@
 # Notes
 
+details>
+<summary>Juillet</summary>
+<br>
+Présence: 4 personnes
+
+## Recommandations
+
+```
+    Après le VPN, le SPN: https://safing.io/spn/
+    Coding UIs doesn’t have to be slow and boring: https://impulse.dev/
+    8 surprising ways how to use Jupyter Notebook: https://mljar.com/blog/how-to-use-jupyter-notebook/
+    Stack Overflow 2022: https://survey.stackoverflow.co/2022
+    Git status plus rapide: https://github.blog/2022-06-27-highlights-from-git-2-37/
+    Post-its magnétiques: https://teslaamazing.com
+    https://www.producthunt.com/posts/no-language-left-behind-by-meta
+    Alternative à Gooogle Analytics de Microsoft: https://github.com/microsoft/clarity
+    tere - a faster alternative to cd + ls: https://github.com/mgunyho/tere
+    DNS pour bloquer du contenu adulte: https://mullvad.net/en/blog/2022/7/11/aiding-to-break-habits-gambling-and-adult-content-dns-blocking/
+    Documentation automatique code avec GPT: https://github.com/mintlify/figstack 
+    Alternative à Github Copilot Amazon: https://techcrunch.com/2022/06/23/amazon-launches-codewhisperer-its-ai-pair-programming-tool/
+    
+```
+
+
+## Partenariats
+Oki pour le partenariat avec ENSPY Alumni
+
+
+```
+<br>
+</details>
+
+
 <details>
 <summary>Juin</summary>
 <br>
