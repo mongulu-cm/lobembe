@@ -37,3 +37,7 @@ terraform.rc
 
 /infra/matomo/roles/
 /infra/matomo/.facts/
+
+node_modules/**
+package-lock.json
+package.json
