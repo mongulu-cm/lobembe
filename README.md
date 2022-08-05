@@ -1,4 +1,5 @@
 # lòbèmbè
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 > [Baka](https://fr.wikipedia.org/wiki/Baka_(langue_oubanguienne)) language meaning a half-hut, often rectangular and wide open
 
  Provides access to services used internally by the mongulu collective for communication:
