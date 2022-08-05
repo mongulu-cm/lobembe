@@ -45,3 +45,11 @@ jobs:
         API_KEY: ${{ secrets.ZULIP_API_KEY }}
       run: |
         cd scripts &&  pytest test_reminder.py
+
+  commitlint:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v5
