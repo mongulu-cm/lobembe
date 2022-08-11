@@ -10,9 +10,6 @@
         - nginx
         - php
         - php-fpm
-  roles:
-    - role: mysql
-      become: yes
 
 - name: Install Matomo
   become: true
