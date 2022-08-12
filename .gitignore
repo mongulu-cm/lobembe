@@ -35,8 +35,8 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-/infra/matomo/roles/
-/infra/matomo/.facts/
+/infra/tools/roles/
+/infra/tools/.facts/
 
 node_modules/**
 package-lock.json

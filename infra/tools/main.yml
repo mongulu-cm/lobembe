@@ -1,0 +1,96 @@
+---
+- name: Install system requirement for tools
+  become: true
+  hosts: lobembe.mongulu.cm
+  tasks:
+    - apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - nginx
+        - php
+        - php-fpm
+    - ansible.builtin.pip:
+        name: docker
+      tags: doing
+
+  roles:
+    - role: docker
+      become: yes
+      vars:
+        docker_users:
+          - ubuntu
+    - role: certbot
+      vars:
+        certbot_admin_email:  general.4ba9da54de788677fa6b62cca72ddfe0.show-sender@streams.zulipchat.com
+        certbot_create_if_missing: true
+        certbot_create_standalone_stop_services: [ nginx ]
+        certbot_certs:
+          - domains:
+              - lobembe.mongulu.cm
+    - role: nginx
+      tags: doing
+      vars:
+        nginx_vhosts:
+          - listen: "443 ssl http2"
+            server_name: "lobembe.mongulu.cm"
+            extra_parameters: |
+              ssl_certificate     /etc/letsencrypt/live/lobembe.mongulu.cm/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/lobembe.mongulu.cm/privkey.pem;
+              ssl_protocols       TLSv1.1 TLSv1.2;
+              ssl_ciphers         HIGH:!aNULL:!MD5;
+              add_header Referrer-Policy origin always; # make sure outgoing links don't show the URL to the Matomo instance
+              add_header X-Content-Type-Options "nosniff" always;
+              add_header X-XSS-Protection "1; mode=block" always;
+              
+              location / {
+                  proxy_set_header Host $host;
+                  proxy_set_header X-Forwarded-Scheme $scheme;
+                  proxy_set_header X-Forwarded-Proto $scheme;
+                  proxy_set_header X-Forwarded-For $remote_addr;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_pass         "http://127.0.0.1:8080";
+              }
+
+          - listen: "80"
+            server_name: "lobembe.mongulu.cm"
+            return: "301  https://$host$request_uri"
+            filename: "lobembe.mongulu.cm.80.conf"
+
+
+- name: Install Matomo
+  become: true
+  hosts: lobembe.mongulu.cm
+  roles:
+    - role: matomo
+      become: true
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+        matomo_domain: matomo.mongulu.cm
+        matomo_protocol: https
+        matomo_https_certificate_admin_email: general.4ba9da54de788677fa6b62cca72ddfe0.show-sender@streams.zulipchat.com
+        matomo_superuser_password: 0Yfrp9%#Crzv
+        matomo_timezone: "Europe/Paris"
+        matomo_configure_web_server: yes
+        matomo_hosted_site_domain: "matomo.mongulu.cm"
+        matomo_hosted_site_protocol: "http"
+
+
+- name: Install Heimdall
+  hosts: lobembe.mongulu.cm
+  tasks:
+    - name: Create directories for heimdall
+      ansible.builtin.file:
+        path: "/home/ubuntu/heimdall"
+        state: directory
+
+    - name: Start heimdall
+      docker_container:
+        name: heimdall
+        image: lscr.io/linuxserver/heimdall:latest
+        state: started
+        volumes:
+          - /home/ubuntu/heimdall:/config
+        ports:
+          - "8080:80"
+        restart_policy: unless-stopped
