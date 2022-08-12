@@ -6,19 +6,33 @@ on:
     - main
     paths:
       - '**.tf'
-      - 'html/**'
+      - 'meeting_notes/**'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
+
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    - uses:  helaili/jekyll-action@v2
+      with:
+        jekyll_src: 'meeting_notes'
+        build_only: true
+        build_dir: '_site'
+
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --delete
       env:
-        AWS_S3_BUCKET: "lobembe.mongulu.cm"
+        AWS_S3_BUCKET: "blog.mongulu.cm"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'eu-central-1'
-        SOURCE_DIR: 'html'
+        SOURCE_DIR: 'meeting_notes/_site'
