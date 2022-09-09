@@ -17,7 +17,7 @@ On your computer :
 
 #### Tools
 In our case, we deployed it on an Oracle Cloud instance (ubuntu image) with the option [always free tier](https://www.oracle.com/cloud/free/)
-2 instances of 1 GB RAM/public IP addresses. We must first [open HTTP/HTTPS](https://youtu.be/yWVD6qmQrb8?t=480):
+ We must first [open HTTP/HTTPS](https://youtu.be/yWVD6qmQrb8?t=480):
 ```
   sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
   sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT

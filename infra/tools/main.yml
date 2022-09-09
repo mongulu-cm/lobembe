@@ -7,19 +7,19 @@
         name: "{{ item }}"
         state: present
       with_items:
-        - nginx
-        - php
-        - php-fpm
+        - docker.io
+        - python3-pip
     - ansible.builtin.pip:
         name: docker
-      tags: doing
+    - name: Ensure ubuntu is added to the docker group.
+      user:
+        name: "ubuntu"
+        groups: docker
+        append: true
+    - name: Reset ssh connection to apply user changes.
+      meta: reset_connection
 
   roles:
-    - role: docker
-      become: yes
-      vars:
-        docker_users:
-          - ubuntu
     - role: certbot
       vars:
         certbot_admin_email:  general.4ba9da54de788677fa6b62cca72ddfe0.show-sender@streams.zulipchat.com
@@ -28,8 +28,8 @@
         certbot_certs:
           - domains:
               - lobembe.mongulu.cm
+              - matomo.mongulu.cm
     - role: nginx
-      tags: doing
       vars:
         nginx_vhosts:
           - listen: "443 ssl http2"
@@ -42,7 +42,30 @@
               add_header Referrer-Policy origin always; # make sure outgoing links don't show the URL to the Matomo instance
               add_header X-Content-Type-Options "nosniff" always;
               add_header X-XSS-Protection "1; mode=block" always;
-              
+
+              location / {
+                  proxy_set_header Host $host;
+                  proxy_set_header X-Forwarded-Scheme $scheme;
+                  proxy_set_header X-Forwarded-Proto $scheme;
+                  proxy_set_header X-Forwarded-For $remote_addr;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_pass         "http://127.0.0.1:8081";
+              }
+          - listen: "80"
+            server_name: "lobembe.mongulu.cm"
+            return: "301  https://$host$request_uri"
+            filename: "lobembe.mongulu.cm.80.conf"
+          - listen: "443 ssl http2"
+            server_name: "matomo.mongulu.cm"
+            extra_parameters: |
+              ssl_certificate     /etc/letsencrypt/live/matomo.mongulu.cm/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/matomo.mongulu.cm/privkey.pem;
+              ssl_protocols       TLSv1.1 TLSv1.2;
+              ssl_ciphers         HIGH:!aNULL:!MD5;
+              add_header Referrer-Policy origin always; # make sure outgoing links don't show the URL to the Matomo instance
+              add_header X-Content-Type-Options "nosniff" always;
+              add_header X-XSS-Protection "1; mode=block" always;
+
               location / {
                   proxy_set_header Host $host;
                   proxy_set_header X-Forwarded-Scheme $scheme;
@@ -53,33 +76,51 @@
               }
 
           - listen: "80"
-            server_name: "lobembe.mongulu.cm"
+            server_name: "matomo.mongulu.cm"
             return: "301  https://$host$request_uri"
-            filename: "lobembe.mongulu.cm.80.conf"
-
+            filename: "matomo.mongulu.cm.80.conf"
 
 - name: Install Matomo
-  become: true
   hosts: lobembe.mongulu.cm
-  roles:
-    - role: matomo
-      become: true
-      vars:
-        ansible_python_interpreter: /usr/bin/python3
-        matomo_domain: matomo.mongulu.cm
-        matomo_protocol: https
-        matomo_https_certificate_admin_email: general.4ba9da54de788677fa6b62cca72ddfe0.show-sender@streams.zulipchat.com
-        matomo_superuser_password: 0Yfrp9%#Crzv
-        matomo_timezone: "Europe/Paris"
-        matomo_configure_web_server: yes
-        matomo_hosted_site_domain: "matomo.mongulu.cm"
-        matomo_hosted_site_protocol: "http"
+  tasks:
+
+    - name: Create directories for persisent matomo data
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "/home/ubuntu/matomo"
+        - "/home/ubuntu/mysql"
+
+    - name: Create db container and connect to network
+      docker_container:
+        name: mysql
+        state: started
+        image: "mysql:latest"
+        volumes:
+          - /home/ubuntu/mysql:/var/lib/mysql
+        env:
+          MYSQL_ROOT_PASSWORD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
+        restart_policy: unless-stopped
+
+    - name: Start matomo
+      docker_container:
+        name: matomo
+        image: matomo:latest
+        state: started
+        volumes:
+          - /home/ubuntu/matomo:/var/www/html
+        ports:
+          - "8080:80"
+        links:
+          - mysql:db
+        restart_policy: unless-stopped
 
 
 - name: Install Heimdall
   hosts: lobembe.mongulu.cm
   tasks:
-    - name: Create directories for heimdall
+    - name: Create directories for persistent heimdall data
       ansible.builtin.file:
         path: "/home/ubuntu/heimdall"
         state: directory
@@ -92,5 +133,5 @@
         volumes:
           - /home/ubuntu/heimdall:/config
         ports:
-          - "8080:80"
+          - "8081:80"
         restart_policy: unless-stopped
