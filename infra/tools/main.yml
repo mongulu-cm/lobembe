@@ -135,3 +135,21 @@
         ports:
           - "8081:80"
         restart_policy: unless-stopped
+
+- name: Install watchtower
+  hosts: lobembe.mongulu.cm
+  become: true
+  tags: doing
+  tasks:
+    - name: Start watchtower
+      docker_container:
+        name: watchtower
+        image: containrrr/watchtower
+        state: started
+        env:
+          WATCHTOWER_NOTIFICATIONS: shoutrrr
+          WATCHTOWER_NOTIFICATION_URL: "{{ lookup('env','WATCHTOWER_NOTIFICATION_URL') }}"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /etc/localtime:/etc/localtime:ro
+        restart_policy: unless-stopped
