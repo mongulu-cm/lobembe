@@ -1,55 +1,49 @@
 name: Execute unit tests
-
 on:
   push:
     branches:
       - main
-
 jobs:
   unittest:
     runs-on: ubuntu-latest
-
     services:
       hoverfly:
-        image: spectolabs/hoverfly:v1.3.2
+        image: index.docker.io/spectolabs/hoverfly@sha256:5dc3da16b63234d8c630f0db29cb27f2ea615cf831c0f5c34371155c009a754a # ratchet:spectolabs/hoverfly:v1.3.2
         ports:
           - 8500:8500
           - 8888:8888
-
     env:
       HOVERFLY_HOST: localhost
       HOVERFLY_PROXY_PORT: 8500
       HOVERFLY_ADMIN_PORT: 8888
-
     steps:
-    - name: Check out repo
-      uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.10"
-    - uses: actions/cache@v2
-      name: Configure pip caching
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    - name: Install Python dependencies
-      run: |
-        pip install -r scripts/requirements.txt
-        pip install -r scripts/requirements-dev.txt
-    - name: test remind utils functions
-      env:
-        GH_TOKEN : ${{ secrets.GH_TOKEN }}
-        API_KEY: ${{ secrets.ZULIP_API_KEY }}
-      run: |
-        cd scripts &&  pytest test_reminder.py
-
+      - name: Check out repo
+        uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@7f80679172b057fc5e90d70d197929d454754a5a # ratchet:actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # ratchet:actions/cache@v2
+        name: Configure pip caching
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install Python dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+          pip install -r scripts/requirements-dev.txt
+      - name: test remind utils functions
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          API_KEY: ${{ secrets.ZULIP_API_KEY }}
+        run: |
+          cd scripts &&  pytest test_reminder.py
   commitlint:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # ratchet:actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@v5
+      - uses: wagoid/commitlint-github-action@4caf21aed4a778f940d0b17eb109942ef167bb27 # ratchet:wagoid/commitlint-github-action@v5
