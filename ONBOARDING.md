@@ -9,7 +9,7 @@
 4. Présentation de la structuration de l'organisation github
 5. Vue d'ensemble des projets
 6. Présentation des issues pouvant l'intéresser
-7. Ajout au github
+7. Ajout au github et [comment contribuer](https://github.com/firstcontributions/first-contributions) dessus
 8. Présentation zulip et ajout (mail digest)
 9. Réception mail, SMS et appels
 10. Planification onboarding technique sur le projet de l'issue choisie
