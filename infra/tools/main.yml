@@ -27,11 +27,13 @@
         certbot_create_standalone_stop_services: [ nginx ]
         certbot_certs:
           - domains:
+              - metabase.mongulu.cm
               - lobembe.mongulu.cm
               - matomo.mongulu.cm
     - role: nginx
       vars:
         nginx_vhosts:
+          #TODO: paramétriser les extra_parmeters
           - listen: "443 ssl http2"
             server_name: "lobembe.mongulu.cm"
             extra_parameters: |
@@ -55,6 +57,7 @@
             server_name: "lobembe.mongulu.cm"
             return: "301  https://$host$request_uri"
             filename: "lobembe.mongulu.cm.80.conf"
+
           - listen: "443 ssl http2"
             server_name: "matomo.mongulu.cm"
             extra_parameters: |
@@ -79,6 +82,31 @@
             server_name: "matomo.mongulu.cm"
             return: "301  https://$host$request_uri"
             filename: "matomo.mongulu.cm.80.conf"
+
+          - listen: "443 ssl http2"
+            server_name: "metabase.mongulu.cm"
+            extra_parameters: |
+              ssl_certificate     /etc/letsencrypt/live/metabase.mongulu.cm/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/metabase.mongulu.cm/privkey.pem;
+              ssl_protocols       TLSv1.1 TLSv1.2;
+              ssl_ciphers         HIGH:!aNULL:!MD5;
+              add_header Referrer-Policy origin always; # make sure outgoing links don't show the URL to the Matomo instance
+              add_header X-Content-Type-Options "nosniff" always;
+              add_header X-XSS-Protection "1; mode=block" always;
+
+              location / {
+                  proxy_set_header Host $host;
+                  proxy_set_header X-Forwarded-Scheme $scheme;
+                  proxy_set_header X-Forwarded-Proto $scheme;
+                  proxy_set_header X-Forwarded-For $remote_addr;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_pass         "http://127.0.0.1:3000";
+              }
+
+          - listen: "80"
+            server_name: "metabase.mongulu.cm"
+            return: "301  https://$host$request_uri"
+            filename: "metabase.mongulu.cm.80.conf"
 
 - name: Install Matomo
   hosts: lobembe.mongulu.cm
@@ -116,6 +144,47 @@
           - mysql:db
         restart_policy: unless-stopped
 
+- name: Install metabase
+  hosts: lobembe.mongulu.cm
+  become: true
+  tags: doing
+  tasks:
+    - name: Create directories for persistent metabase data
+      ansible.builtin.file:
+        path: "/home/ubuntu/metabase"
+        state: directory
+
+    #TODO: Execute only if the database don't exist
+    - name: Create a metabase database
+      community.docker.docker_container_exec:
+        container: mysql
+        command: /bin/bash -c 'mysql -uroot -e "create database metabase"'
+        env:
+          MYSQL_PWD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
+      register: result
+
+    - name: Get infos on container
+      docker_container_info:
+        name: mysql
+      register: result
+
+    - name: Start metabase
+      docker_container:
+        name: metabase
+        image: bobblybook/metabase:latest
+        state: started
+        env:
+          MB_DB_TYPE: "mysql"
+          MB_DB_DBNAME: "metabase"
+          MB_DB_PORT: "3306"
+          MB_DB_USER: "root"
+          MB_DB_PASS: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
+          MB_DB_HOST: "{{ result.container.NetworkSettings.IPAddress }}"
+        volumes:
+          - /home/ubuntu/metabase:/data
+        ports:
+          - "3000:3000"
+        restart_policy: unless-stopped
 
 - name: Install Heimdall
   hosts: lobembe.mongulu.cm
@@ -139,7 +208,6 @@
 - name: Install watchtower
   hosts: lobembe.mongulu.cm
   become: true
-  tags: doing
   tasks:
     - name: Start watchtower
       docker_container:

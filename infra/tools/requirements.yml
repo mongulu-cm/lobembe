@@ -7,3 +7,5 @@ roles:
     name: certbot
   - src: geerlingguy.nginx
     name: nginx
+collections:
+  - community.docker
