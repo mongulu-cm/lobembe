@@ -12,6 +12,7 @@ On your computer :
 * aws-cli / git
 * terraform
 * ansible
+* [secretsfoundry](https://github.com/truefoundry/secretsfoundry)
 
 ### Deployment
 
@@ -27,7 +28,7 @@ Then install matomo, heimdall and nginx for reverse proxy:
 ```
   export ANSIBLE_CONFIG=./ansible.cfg
   ansible-galaxy install -r requirements.yml
-  ansible-playbook main.yml ( in case of issue with matomo, just re-execute the playbook )
+  secretsfoundry run --script 'ansible-playbook main.yml' ( in case of issue with matomo, just re-execute the playbook )
 ``` 
 
 You should get a 503 error when accessing to matomo site. To correct this, run on the instance:

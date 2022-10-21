@@ -112,7 +112,7 @@
   hosts: lobembe.mongulu.cm
   tasks:
 
-    - name: Create directories for persisent matomo data
+    - name: Create directories for persistent matomo data
       ansible.builtin.file:
         path: "{{ item }}"
         state: directory
@@ -155,13 +155,13 @@
         state: directory
 
     #TODO: Execute only if the database don't exist
-    - name: Create a metabase database
-      community.docker.docker_container_exec:
-        container: mysql
-        command: /bin/bash -c 'mysql -uroot -e "create database metabase"'
-        env:
-          MYSQL_PWD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
-      register: result
+#    - name: Create a metabase database
+#      community.docker.docker_container_exec:
+#        container: mysql
+#        command: /bin/bash -c 'mysql -uroot -e "create database metabase"'
+#        env:
+#          MYSQL_PWD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
+#      register: result
 
     - name: Get infos on container
       docker_container_info:
@@ -179,7 +179,7 @@
           MB_DB_PORT: "3306"
           MB_DB_USER: "root"
           MB_DB_PASS: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
-          MB_DB_HOST: "{{ result.container.NetworkSettings.IPAddress }}"
+          MB_DB_HOST: "172.17.0.2"
         volumes:
           - /home/ubuntu/metabase:/data
         ports:
