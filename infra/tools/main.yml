@@ -1,8 +1,12 @@
 ---
-- name: Install system requirement for tools
+- name: Install system requirement for tools and utils
   become: true
   hosts: lobembe.mongulu.cm
   tasks:
+    - community.general.snap:
+        name:
+          - btop
+      tags: doing
     - apt:
         name: "{{ item }}"
         state: present
