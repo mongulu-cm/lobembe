@@ -1,0 +1,18 @@
+---
+
+- apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - docker.io
+    - python3-pip
+    - npm
+- ansible.builtin.pip:
+    name: docker
+- name: Ensure ubuntu is added to the docker group.
+  user:
+    name: "ubuntu"
+    groups: docker
+    append: true
+- name: Reset ssh connection to apply user changes.
+  meta: reset_connection

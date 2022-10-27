@@ -1,27 +1,10 @@
 ---
-- name: Install system requirement for tools and utils
+- name: Install system requirements for tools + utils binaries
   become: true
   hosts: lobembe.mongulu.cm
   tasks:
-    - community.general.snap:
-        name:
-          - btop
-      tags: doing
-    - apt:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - docker.io
-        - python3-pip
-    - ansible.builtin.pip:
-        name: docker
-    - name: Ensure ubuntu is added to the docker group.
-      user:
-        name: "ubuntu"
-        groups: docker
-        append: true
-    - name: Reset ssh connection to apply user changes.
-      meta: reset_connection
+    - import_tasks: utils.yml
+    - import_tasks: system_requirements.yml
 
   roles:
     - role: certbot
@@ -151,7 +134,6 @@
 - name: Install metabase
   hosts: lobembe.mongulu.cm
   become: true
-  tags: doing
   tasks:
     - name: Create directories for persistent metabase data
       ansible.builtin.file:

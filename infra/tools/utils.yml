@@ -1,0 +1,6 @@
+---
+
+- community.general.snap:
+    name:
+      - btop
+  tags: doing
