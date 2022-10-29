@@ -3,4 +3,10 @@
 - community.general.snap:
     name:
       - btop
-  tags: doing
+
+- name: Install and configure tailscale
+  ansible.builtin.import_role:
+    name: tailscale
+  vars:
+    verbose: true
+    tailscale_authkey: "{{ lookup('env', 'TAILSCALE_KEY') }}"

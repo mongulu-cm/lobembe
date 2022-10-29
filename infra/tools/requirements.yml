@@ -7,5 +7,7 @@ roles:
     name: certbot
   - src: geerlingguy.nginx
     name: nginx
+  - src: artis3n.tailscale
+    name: tailscale
 collections:
   - community.docker
