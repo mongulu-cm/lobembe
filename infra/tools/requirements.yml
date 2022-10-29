@@ -9,5 +9,7 @@ roles:
     name: nginx
   - src: artis3n.tailscale
     name: tailscale
+  - src: darkwizard242.lazydocker
+    name: lazydocker
 collections:
   - community.docker

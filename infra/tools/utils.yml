@@ -10,3 +10,9 @@
   vars:
     verbose: true
     tailscale_authkey: "{{ lookup('env', 'TAILSCALE_KEY') }}"
+
+- name: Install lazydocker
+  ansible.builtin.import_role:
+    name: lazydocker
+  vars:
+    lazydocker_dl_url: "https://github.com/jesseduffield/lazydocker/releases/download/v0.19.0/lazydocker_0.19.0_Linux_arm64.tar.gz"
