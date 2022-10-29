@@ -59,7 +59,7 @@ if config("REMINDER_TYPE", default="") == "ISSUES" and today.weekday() == 3:
             result = zulip_client.send_message(request)
             logger.info(f"👉 {result}")
 
-else:
+if config("REMINDER_TYPE", default="") != "ISSUES" and today.weekday() != 3:
 
     zulip_message, sms_message = construct_meeting_message(today, last_sunday)
     if zulip_message != "":
