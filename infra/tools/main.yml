@@ -160,12 +160,7 @@
         image: bobblybook/metabase:latest
         state: started
         env:
-          MB_DB_TYPE: "mysql"
-          MB_DB_DBNAME: "metabase"
-          MB_DB_PORT: "3306"
-          MB_DB_USER: "root"
-          MB_DB_PASS: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
-          MB_DB_HOST: "172.17.0.2"
+          MB_DB_CONNECTION_URI: "mysql://172.17.0.3:3306/metabase?user=root&password={{ lookup('env','MYSQL_ROOT_PASSWORD') }}&allowPublicKeyRetrieval=true"
         volumes:
           - /home/ubuntu/metabase:/data
         ports:
