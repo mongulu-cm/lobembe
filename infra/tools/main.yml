@@ -134,6 +134,7 @@
 - name: Install metabase
   hosts: lobembe.mongulu.cm
   become: true
+  tags: doing
   tasks:
     - name: Create directories for persistent metabase data
       ansible.builtin.file:
@@ -160,7 +161,7 @@
         image: bobblybook/metabase:latest
         state: started
         env:
-          MB_DB_CONNECTION_URI: "mysql://172.17.0.3:3306/metabase?user=root&password={{ lookup('env','MYSQL_ROOT_PASSWORD') }}&allowPublicKeyRetrieval=true"
+          MB_DB_CONNECTION_URI: "mysql://172.17.0.4:3306/metabase?user=root&password={{ lookup('env','MYSQL_ROOT_PASSWORD') }}&allowPublicKeyRetrieval=true"
         volumes:
           - /home/ubuntu/metabase:/data
         ports:
