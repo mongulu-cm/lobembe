@@ -141,19 +141,17 @@
         path: "/home/ubuntu/metabase"
         state: directory
 
-    #TODO: Execute only if the database don't exist
-#    - name: Create a metabase database
-#      community.docker.docker_container_exec:
-#        container: mysql
-#        command: /bin/bash -c 'mysql -uroot -e "create database metabase"'
-#        env:
-#          MYSQL_PWD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
-#      register: result
+    - name: Create a metabase database
+      community.docker.docker_container_exec:
+        container: mysql
+        command: /bin/bash -c 'mysql -uroot -e "create database if not exists metabase"'
+        env:
+          MYSQL_PWD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
 
-    - name: Get infos on container
+    - name: Get MySQL container info
       docker_container_info:
         name: mysql
-      register: result
+      register: mysql_container_info
 
     - name: Start metabase
       docker_container:
@@ -161,7 +159,7 @@
         image: bobblybook/metabase:latest
         state: started
         env:
-          MB_DB_CONNECTION_URI: "mysql://172.17.0.4:3306/metabase?user=root&password={{ lookup('env','MYSQL_ROOT_PASSWORD') }}&allowPublicKeyRetrieval=true"
+          MB_DB_CONNECTION_URI: "mysql://{{ mysql_container_info.container.NetworkSettings.Networks.bridge.IPAddress }}:3306/metabase?user=root&password={{ lookup('env','MYSQL_ROOT_PASSWORD') }}&allowPublicKeyRetrieval=true"
         volumes:
           - /home/ubuntu/metabase:/data
         ports:
@@ -202,4 +200,27 @@
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
           - /etc/localtime:/etc/localtime:ro
+        restart_policy: unless-stopped
+
+- name: Install ntfy
+  hosts: lobembe.mongulu.cm
+  become: true
+  tasks:
+    - name: Create directories for persistent ntfy data
+      ansible.builtin.file:
+        path: "/home/ubuntu/ntfy"
+        state: directory
+
+    - name: Start ntfy
+      docker_container:
+        name: ntfy
+        image: binwiederhier/ntfy
+        env:
+          TZ: Europe/Paris
+        volumes:
+          - /home/ubuntu/ntfy:/var/cache/ntfy
+        ports:
+          - "8082:80"
+        command: serve --cache-file /var/cache/ntfy/cache.db
+        state: started
         restart_policy: unless-stopped
