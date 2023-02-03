@@ -4,12 +4,11 @@ import datetime
 from io import StringIO
 
 import zulip
+import requests
 from decouple import config
 from github import Github
 from loguru import logger
 from rich.traceback import install
-from twilio.base.exceptions import TwilioRestException
-from twilio.rest import Client
 
 from utils import (construct_assigned_issues, construct_issue_message,
                    construct_meeting_message, get_assigned_users, get_names,
@@ -28,10 +27,6 @@ zulip_client = zulip.Client(email="reminder-bot@mongulu.zulipchat.com", api_key=
 
 token = config("GH_TOKEN")
 g = Github(token, verify=False)
-
-account_sid = config("ACCOUNT_SID")
-auth_token = config("AUTH_TOKEN")
-twilio_client = Client(account_sid, auth_token)
 
 if config("REMINDER_TYPE", default="") == "ISSUES" and today.weekday() == 3:
 
@@ -66,23 +61,12 @@ if config("REMINDER_TYPE", default="") != "ISSUES" and today.weekday() != 3:
         zulip_ids = get_table_zulip_members(zulip_client).all.user_id
         for zulip_id in zulip_ids:
             request = {"type": "private", "to": [zulip_id], "content": f" {zulip_message} "}
-            result = zulip_client.send_message(request)
+            result = zulip_client.send_message(request)  # zulip automatically send also an email to the users
             logger.info(f"👉 {result}")
 
     if sms_message != "":
-        repo = g.get_repo("mongulu-cm/contacts")
-        contents = repo.get_contents("members.csv")
-        f = StringIO(contents.decoded_content.decode("utf-8"))
-        reader = csv.reader(f, delimiter=',')
-        next(reader)
-        for row in reader:
-            try:
-                message = f"Hello {row[1]}, {sms_message}"
-                twilio_client.messages.create(to=f"+33{row[3][1:]}", from_="+16625000434",
-                                             body=message)
-            except TwilioRestException as exc:
-                if exc.status == 400:
-                    print(f"message failed to sent to {row[0]} {row[1]} because not registered")
-                else:
-                    raise
-
+        headers = {'Priority': '3', 'Title': "Mongulu: meeting reminder"}
+        response = requests.post('https://ntfy.mongulu.cm/meetings', headers=headers,
+                                 data=sms_message.encode(encoding='utf-8'))
+        response.raise_for_status()
+        logger.info(f"👉  message successfully sent: {sms_message}")
