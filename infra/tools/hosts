@@ -1,1 +1,2 @@
 lobembe.mongulu.cm ansible_user=ubuntu
+ntfy.mongulu.cm ansible_user=ubuntu

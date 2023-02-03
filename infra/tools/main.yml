@@ -17,6 +17,7 @@
               - metabase.mongulu.cm
               - lobembe.mongulu.cm
               - matomo.mongulu.cm
+              - ntfy.mongulu.cm
     - role: nginx
       vars:
         nginx_vhosts:
@@ -92,8 +93,80 @@
 
           - listen: "80"
             server_name: "metabase.mongulu.cm"
-            return: "301  https://$host$request_uri"
+            extra_parameters: |
             filename: "metabase.mongulu.cm.80.conf"
+
+          - listen: "443 ssl http2"
+            server_name: "ntfy.mongulu.cm"
+            extra_parameters: |
+              ssl_certificate     /etc/letsencrypt/live/ntfy.mongulu.cm/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/ntfy.mongulu.cm/privkey.pem;
+
+              ssl_session_timeout 1d;
+              ssl_session_cache shared:MozSSL:10m; # about 40000 sessions
+              ssl_session_tickets off;
+              ssl_protocols TLSv1.2 TLSv1.3;
+              ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+              ssl_prefer_server_ciphers off;
+
+              location / {
+
+                  proxy_pass  "http://127.0.0.1:8082";
+                  proxy_http_version 1.1;
+
+                  proxy_buffering off;
+                  proxy_request_buffering off;
+                  proxy_redirect off;
+
+                  proxy_set_header Host $http_host;
+                  proxy_set_header Upgrade $http_upgrade;
+                  proxy_set_header Connection "upgrade";
+                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                  proxy_connect_timeout 3m;
+                  proxy_send_timeout 3m;
+                  proxy_read_timeout 3m;
+
+                  client_max_body_size 20m;
+              }
+
+          - listen: "80"
+            server_name: "ntfy.mongulu.cm"
+            extra_parameters: |
+              location / {
+                  # Redirect HTTP to HTTPS, but only for GET topic addresses, since we want 
+                  # it to work with curl without the annoying https:// prefix
+                  set $redirect_https "";
+                  if ($request_method = GET) {
+                    set $redirect_https "yes";
+                  }
+                  if ($request_uri ~* "^/([-_a-z0-9]{0,64}$|docs/|static/)") {
+                    set $redirect_https "${redirect_https}yes";
+                  }
+                  if ($redirect_https = "yesyes") {
+                    return 302 https://$http_host$request_uri$is_args$query_string;
+                  }
+
+                  proxy_pass http://127.0.0.1:8082;
+                  proxy_http_version 1.1;
+
+                  proxy_buffering off;
+                  proxy_request_buffering off;
+                  proxy_redirect off;
+
+                  proxy_set_header Host $http_host;
+                  proxy_set_header Upgrade $http_upgrade;
+                  proxy_set_header Connection "upgrade";
+                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                  proxy_connect_timeout 3m;
+                  proxy_send_timeout 3m;
+                  proxy_read_timeout 3m;
+
+                  client_max_body_size 20m; # Must be >= attachment-file-size-limit in /etc/ntfy/server.yml
+                }
+            filename: "ntfy.mongulu.cm.80.conf"
+
 
 - name: Install Matomo
   hosts: lobembe.mongulu.cm
@@ -133,8 +206,6 @@
 
 - name: Install metabase
   hosts: lobembe.mongulu.cm
-  become: true
-  tags: doing
   tasks:
     - name: Create directories for persistent metabase data
       ansible.builtin.file:
@@ -187,7 +258,6 @@
 
 - name: Install watchtower
   hosts: lobembe.mongulu.cm
-  become: true
   tasks:
     - name: Start watchtower
       docker_container:
@@ -204,7 +274,7 @@
 
 - name: Install ntfy
   hosts: lobembe.mongulu.cm
-  become: true
+  tags: doing
   tasks:
     - name: Create directories for persistent ntfy data
       ansible.builtin.file:
@@ -221,6 +291,6 @@
           - /home/ubuntu/ntfy:/var/cache/ntfy
         ports:
           - "8082:80"
-        command: serve --cache-file /var/cache/ntfy/cache.db
+        command: serve --cache-file /var/cache/ntfy/cache.db --behind-proxy
         state: started
         restart_policy: unless-stopped
