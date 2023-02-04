@@ -7,8 +7,11 @@
     - docker.io
     - python3-pip
     - npm
+    - pipx
 - ansible.builtin.pip:
     name: docker
+- community.general.pipx:
+    name: runlike
 - name: Ensure ubuntu is added to the docker group.
   user:
     name: "ubuntu"
