@@ -158,6 +158,7 @@
 
 - name: Install Matomo
   hosts: lobembe.mongulu.cm
+  tags: doing
   tasks:
 
     - name: Create directories for persistent matomo data
@@ -179,6 +180,18 @@
           MYSQL_ROOT_PASSWORD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
         restart_policy: unless-stopped
 
+    - name: Create a matomo database
+      community.docker.docker_container_exec:
+        container: mysql
+        command: /bin/bash -c 'mysql -uroot -e "create database if not exists matomo"'
+        env:
+          MYSQL_PWD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
+
+    - name: Get MySQL container info
+      docker_container_info:
+        name: mysql
+      register: mysql_container_info
+
     - name: Start matomo
       docker_container:
         name: matomo
@@ -190,6 +203,12 @@
           - "8080:80"
         links:
           - mysql:db
+        env:
+          MATOMO_DATABASE_HOST: "{{ mysql_container_info.container.NetworkSettings.Networks.bridge.IPAddress }}"
+          MATOMO_DATABASE_USERNAME: "root"
+          MATOMO_DATABASE_PASSWORD: "{{ lookup('env','MYSQL_ROOT_PASSWORD') }}"
+          MATOMO_DATABASE_TABLES_PREFIX: ""
+          MATOMO_DATABASE_DBNAME: "matomo"
         restart_policy: unless-stopped
 
 - name: Install metabase
@@ -262,7 +281,6 @@
 
 - name: Install ntfy
   hosts: lobembe.mongulu.cm
-  tags: doing
   tasks:
     - name: Create directories for persistent ntfy data
       ansible.builtin.file:
