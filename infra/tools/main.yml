@@ -17,6 +17,7 @@
       proxy_set_header X-Real-IP $remote_addr;
   tasks:
     - import_tasks: utils.yml
+      tags: doing
     - import_tasks: system_requirements.yml
 
   roles:
@@ -158,7 +159,6 @@
 
 - name: Install Matomo
   hosts: lobembe.mongulu.cm
-  tags: doing
   tasks:
 
     - name: Create directories for persistent matomo data
@@ -210,6 +210,13 @@
           MATOMO_DATABASE_TABLES_PREFIX: ""
           MATOMO_DATABASE_DBNAME: "matomo"
         restart_policy: unless-stopped
+
+#    - name: Backup home of all mysql databases
+#      cron:
+#        name: "backup of all databases"
+#        minute: 0
+#        hour: 0
+#        job: "mysqldump --all-databases -h {{ mysql_container_info.container.NetworkSettings.Networks.bridge.IPAddress }} -uroot -p{{ lookup('env','MYSQL_ROOT_PASSWORD') }} > all-databases-dump.sql"
 
 - name: Install metabase
   hosts: lobembe.mongulu.cm

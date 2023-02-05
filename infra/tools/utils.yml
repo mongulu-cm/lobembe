@@ -4,6 +4,32 @@
     name:
       - btop
 
+- apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - pipx
+    - awscli # configure manually
+    - restic
+    - ncdu
+    - mysql-client-core-8.0
+
+#- name: Initialize restic repository
+#  shell: restic -r s3:s3.amazonaws.com/mongulu-files/backups/lobembe.mongulu.cm/ init
+#  environment:
+#    RESTIC_PASSWORD_COMMAND: "{{ lookup('env','RESTIC_PASSWORD_COMMAND') }}"
+
+#
+#- name: Backup home directory using restic
+#  cron:
+#    name: "Restic backup of home directory"
+#    minute: 30
+#    hour: 0
+#    job: "restic backup ~/ --exclude \".*\" --exclude \"snap/*\" --exclude \"mysql/*\" --repo s3:s3.amazonaws.com/mongulu-files/backups/lobembe.mongulu.cm/ --password-command \"{ lookup('env','RESTIC_PASSWORD_COMMAND') }}\" >> /var/log/restic-backup.log 2>&1"
+
+- community.general.pipx:
+    name: runlike
+
 - name: Install and configure tailscale
   ansible.builtin.import_role:
     name: tailscale
