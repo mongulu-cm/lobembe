@@ -1,5 +1,6 @@
 from zulip import Client
 from decouple import config
+import time
 
 # Stream name
 STREAM = "lobembe"
@@ -68,8 +69,17 @@ for topic, messages in topics.items():
         output += f"- [{text}]({url})\n"
     output +="\n"
 
-# Print the output
 print(output)
+# Delete all messages
+response = input("Do you want to delete all messages in topics (Make sure output is oki before) ? [y/n]: ")
+if response.lower() == "y" or response.lower() == "yes":
+    for message in result["messages"]:
+        print(message)
+        result = client.delete_message(message["id"])
+        time.sleep(1)
+    print("{} messages deleted".format(len(result["messages"]))
+else:
+    print("No messages deleted")
 
 
 
