@@ -22,6 +22,7 @@ In our case, we deployed it on an Oracle Cloud instance (ubuntu image) with the 
 ```
   sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
   sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+  sudo netfilter-persistent save
 ```
 
 Then install matomo, heimdall and nginx for reverse proxy:
