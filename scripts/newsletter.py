@@ -1,12 +1,15 @@
 from zulip import Client
 from decouple import config
 import time
+import boto3
 
 # Stream name
 STREAM = "lobembe"
 
 # Create Zulip client instance
-client = Client(email="reminder-bot@mongulu.zulipchat.com", api_key='',site="https://mongulu.zulipchat.com")
+ssm = boto3.client('ssm',region_name='eu-central-1')
+api_key = ssm.get_parameter(Name="/lobembe/newsbot-key", WithDecryption=False)['Parameter']['Value']
+client = Client(email="newsbot-bot@mongulu.zulipchat.com", api_key=api_key,site="https://mongulu.zulipchat.com")
 
 request: dict = {
     "anchor": "newest",
