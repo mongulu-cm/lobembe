@@ -6,7 +6,7 @@ import time
 STREAM = "lobembe"
 
 # Create Zulip client instance
-client = Client(email="reminder-bot@mongulu.zulipchat.com", api_key=config('API_KEY'),site="https://mongulu.zulipchat.com")
+client = Client(email="reminder-bot@mongulu.zulipchat.com", api_key='',site="https://mongulu.zulipchat.com")
 
 request: dict = {
     "anchor": "newest",
@@ -66,6 +66,10 @@ output = ""
 for topic, messages in topics.items():
     output += f"### {topic}\n"
     for text, url in messages:
+        if text.endswith(": "):
+            text = text[:-2]
+        elif text.endswith(":"):
+            text = text[:-1]
         output += f"- [{text}]({url})\n"
     output +="\n"
 
@@ -77,7 +81,7 @@ if response.lower() == "y" or response.lower() == "yes":
         print(message)
         result = client.delete_message(message["id"])
         time.sleep(1)
-    print("{} messages deleted".format(len(result["messages"]))
+    print("{} messages deleted".format(len(result["messages"])))
 else:
     print("No messages deleted")
 
