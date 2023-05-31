@@ -23,7 +23,7 @@
   roles:
     - role: certbot
       vars:
-        certbot_admin_email:  general.4ba9da54de788677fa6b62cca72ddfe0.show-sender@streams.zulipchat.com
+        certbot_admin_email:  collectif@mongulu.cm
         certbot_create_if_missing: true
         certbot_create_standalone_stop_services: [ nginx ]
         certbot_certs:
