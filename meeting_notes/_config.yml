@@ -23,7 +23,7 @@ timezone: Europe/Paris
 
 title: 42                          # the main title
 
-tagline: Le blog du collectif mongulu    # it will display as the sub-title
+tagline: Le blog du collectif mongulu. Abonne-toi https://stats.sender.net/forms/eZr3ve/view    # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   Le blog du collectif mongulu. Vous y trouverez nos notes de réunions avec plein d'outils tech recommandés
