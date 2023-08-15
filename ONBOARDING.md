@@ -12,7 +12,7 @@
 7. Présentation des issues pouvant l'intéresser
 8. Ajout au github et [comment contribuer](https://github.com/firstcontributions/first-contributions) dessus
 9. Présentation zulip et ajout (mail digest)
-10. Ajout communauté whatsapp, google calendar, newsletter
+10. Ajout communauté whatsapp, google calendar, newsletter, à easyappointments
 11. Planification onboarding technique sur le projet de l'issue choisie
 12. Nos passions sait-on jamais
 
@@ -23,15 +23,15 @@
 
 0. Ajout à github education si la personne est étudiante
 1. Clic sur le lien gitpod et explication pendant que running (laisse le browser)
-2. Changement du thème gitpod si nécessaire et persistence de celui-ci + plugins
-3. Ajout au channel des secrets pour set les informations demandés par Gitpod
-4. Création de branche (sans le _) et ajout d'un espace (pre-commit corrige automatiquement) puis commentaire sur le fichier py ou tf
-5. Extinction/reprise (obligation de passer par gitpod et pas github sinon doublon/perte )
-6. Montrer où l'on peut modifier l'IDE par défaut
-7. Création de la branche de travail et push (configuration de gitpod pour read/write les repos + allow popup)
-8. Création de la merge request github et analyse
-9. Destruction env au bout de 14 jours unused donc push systématique dans sa branche
-10. Montrer comment pour ce cas-là, recréer son environnement à partir de sa branche
+2. Changement du thème gitpod si nécessaire et persistence de celui-ci
+3. Présentation des plugin [Cody](https://www.loom.com/share/bf13980faa7a4d3d8991c3cdc72e40ae?sid=bfdc7647-6674-4ff5-9493-dee725776588), AWS Toolkit( Codewhisperer)
+4. Ajout au channel des secrets pour set les informations demandés par Gitpod
+5. Création de branche (sans le _) et ajout d'un espace (pre-commit corrige automatiquement) puis commentaire sur le fichier py ou tf
+6. Extinction/reprise (obligation de passer par gitpod et pas github sinon doublon/perte )
+7. Montrer où l'on peut modifier l'IDE par défaut
+8. Création de la branche de travail et push (configuration de gitpod pour read/write les repos + allow popup)
+9. Création de la merge request github et analyse
+11. Montrer comment pour ce cas-là, recréer son environnement à partir de sa branche
 
 
 #### Mtchoun-mouh
