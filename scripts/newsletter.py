@@ -1,93 +1,65 @@
-from zulip import Client
-from decouple import config
-import time
-import boto3
 
-# Stream name
-STREAM = "lobembe"
+import re
+from bs4 import BeautifulSoup
+import requests
 
-# Create Zulip client instance
-ssm = boto3.client('ssm',region_name='eu-central-1')
-api_key = ssm.get_parameter(Name="/lobembe/newsbot-key", WithDecryption=False)['Parameter']['Value']
-client = Client(email="newsbot-bot@mongulu.zulipchat.com", api_key=api_key,site="https://mongulu.zulipchat.com")
+def extract_messages_with_links_whatsapp(file_path):
+    with open(file_path, "r", encoding="utf-8") as file:
+        lines = file.readlines()
 
-request: dict = {
-    "anchor": "newest",
-    "num_before": 100,
-    "num_after": 0,
-    "narrow": [
-        {"operator": "stream", "operand": STREAM},
-        {"operator": "topic", "operand": "github", "negated": True},
-        {"operator": "topic", "operand": "watchtower", "negated": True},
-        {"operator": "topic", "operand": "stream events", "negated": True}
-    ],
-}
-
-# Get all messages from all topics in the stream
-result = client.get_messages(request)
-
-# Extract messages from the result
-messages = result["messages"]
-
-# Dict to store messages grouped by topic
-topics = {}
-
-for message in messages:
-    #print("Subject:", message["subject"], "Content:", message["content"])
-
-    topic = message["subject"]
-    content = message["content"]
-
-    import html
-    from html.parser import HTMLParser
+    link_pattern = re.compile(r'http|www')
+    messages_with_links = [line for line in lines if link_pattern.search(line)]
     
-    class MyHTMLParser(HTMLParser):
-        def __init__(self):
-            self.reset()
-            self.strict = False
-            self.convert_charrefs= True
-            self.data = []
+    formatted_messages = []
+    for message in messages_with_links:
+        parts = message.split(" - ", 1)
+        if len(parts) == 2:
+            _, message_content = parts
+            link_match = link_pattern.search(message_content)
+            if link_match:
+                start_idx = link_match.start()
+                link = message_content[start_idx:].split()[0]
+                message_without_name = message_content.split(": ", 1)[-1].split(link)[0].strip()
+                formatted_messages.append(f"[{message_without_name}]({link})")
 
-        def handle_data(self, data):
-            self.data.append(data)
-            
+    formatted_messages_final = [message.replace(":", "").strip() for message in formatted_messages]
+    output_file_path = file_path.replace(".txt", "_processed.txt")
+    with open(output_file_path, "w", encoding="utf-8") as file:
+        file.write("\n".join(formatted_messages_final))
+    
+    return output_file_path
 
-    parser = MyHTMLParser()
-    parser.feed(html.unescape(content))
-    text = parser.data[0]
-    url = parser.data[0] if len(parser.data) == 1 else parser.data[1]
+def extract_info_from_links(file_path):
+    with open(file_path, "r", encoding="utf-8") as file:
+        links = file.readlines()
 
-    if topic not in topics:
-        topics[topic] = []
-    topics[topic].append((text, url))
+    results = []
+    for link in links:
+        link = link.strip()
+        response = requests.get(link)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        title = soup.title.string if soup.title else "No title"
+        description_tag = soup.find("meta", attrs={"name": "description"})
+        description = description_tag["content"] if description_tag else "No description"
+        results.append(f"[{title}]({link}) - {description}")
 
-    #markdown_link = "[{}]({})".format(text,url)
-    #print(markdown_link)
+    output_file_path = file_path.replace(".txt", "_info.txt")
+    with open(output_file_path, "w", encoding="utf-8") as file:
+        file.write("\n".join(results))
+    
+    return output_file_path
 
-# Format the messages
-output = ""
-for topic, messages in topics.items():
-    output += f"### {topic}\n"
-    for text, url in messages:
-        if text.endswith(": "):
-            text = text[:-2]
-        elif text.endswith(":"):
-            text = text[:-1]
-        output += f"- [{text}]({url})\n"
-    output +="\n"
+if __name__ == "__main__":
+    choice = input("Choose the type of file (Enter 'whatsapp' for WhatsApp chat file or 'links' for links file): ").strip().lower()
 
-print(output)
-# Delete all messages
-response = input("Do you want to delete all messages in topics (Make sure output is oki before) ? [y/n]: ")
-if response.lower() == "y" or response.lower() == "yes":
-    for message in result["messages"]:
-        print(message)
-        result = client.delete_message(message["id"])
-        time.sleep(1)
-    print("{} messages deleted".format(len(result["messages"])))
-else:
-    print("No messages deleted")
-
-
-
+    if choice == "whatsapp":
+        file_path = input("Enter the path to the WhatsApp chat file: ")
+        result_file = extract_messages_with_links_whatsapp(file_path)
+        print(f"Processed messages saved to: {result_file}")
+    elif choice == "links":
+        file_path = input("Enter the path to the links file: ")
+        result_file = extract_info_from_links(file_path)
+        print(f"Link information saved to: {result_file}")
+    else:
+        print("Invalid choice!")
 
