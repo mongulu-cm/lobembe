@@ -8,6 +8,7 @@ Elle est gratuite, sans publicité, synchronise votre historique sur tous vos ap
 Si vous êtes un utilisateur de ChatGPT sur téléphone et que vous êtes sur iPhone, cela s'avèrera être beaucoup plus pratique.
 
 Pour plus de découvertes, RDV sur : https://blog.mongulu.cm
+Pour obtenir directement le lien vers l'article, laissez-nous un message en commentaire
 
 Ecris-moi un post linkedin à partir  de cette page <lien>
 
