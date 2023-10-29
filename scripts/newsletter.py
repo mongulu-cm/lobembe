@@ -4,7 +4,7 @@ import requests
 from typing import List, Dict
 
 # Function to manually split messages
-def split_messages_manually(content: str) -> List[Dict[str, str]]:
+def split_messages_manually_iphone(content: str) -> List[Dict[str, str]]:
     messages = []
     lines = content.split('\n')
     current_message = None
@@ -28,6 +28,30 @@ def split_messages_manually(content: str) -> List[Dict[str, str]]:
 
     return messages
 
+
+def split_messages_manually_android(content: str) -> List[Dict[str, str]]:
+    messages = []
+    lines = content.split('\n')
+    current_message = None
+
+    for line in lines:
+        match = re.match(r'(\d{2}/\d{2}/\d{4}, \d{2}:\d{2}) - ([^:]+): (.*)', line)
+        if match:
+            if current_message:
+                messages.append(current_message)
+            current_message = {
+                'timestamp': match.group(1),
+                'username': match.group(2),
+                'message': match.group(3)
+            }
+        else:
+            if current_message:
+                current_message['message'] += '\n' + line
+
+    if current_message:
+        messages.append(current_message)
+
+    return messages
 
 def extract_info_from_links(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
@@ -140,7 +164,7 @@ if __name__ == "__main__":
         with open(file_path, 'r', encoding='utf-8') as f:
             file_content = f.read()
         # Split the messages
-        split_messages = split_messages_manually(file_content)
+        split_messages = split_messages_manually_android(file_content)
         grouped_and_transformed_messages = group_and_transform_messages_by_category_upper(split_messages)
         print(grouped_and_transformed_messages)
     elif choice == "links":
