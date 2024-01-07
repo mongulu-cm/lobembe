@@ -63,7 +63,7 @@
     
   #### Produit
 
-  0. Présentation de https://lobembe.mongulu.cm/ avec board kanban, Matomo,Posthog,Sentry, et identfiants dans zulip
+  0. Présentation de https://lobembe.mongulu.cm/ avec board kanban, Matomo,Posthog,Sentry,lien des produits(Gogocarto) et identfiants dans zulip
   1. Les membres sont dans dans https://github.com/mongulu-cm/contacts
   2. Focus sur les issues de https://github.com/mongulu-cm/lobembe et choix/création
 
