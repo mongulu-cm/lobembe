@@ -11,7 +11,7 @@
 7. Présentation des issues pouvant l'intéresser
 8. Ajout au github et [comment contribuer](https://github.com/firstcontributions/first-contributions) dessus
 9. Présentation zulip et ajout (mail digest)
-10. Ajout communauté whatsapp, [google calendar](NjZkODkyNTUwNmUzMzJiY2M3ZmQwYjM5NDA1OThmNDEzZjNkODE1N2YxYWJjYzcyNjUwMTFkNjY4NGU1MDg1ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t), newsletter, à easyappointments
+10. Ajout communauté whatsapp, [google calendar](NjZkODkyNTUwNmUzMzJiY2M3ZmQwYjM5NDA1OThmNDEzZjNkODE1N2YxYWJjYzcyNjUwMTFkNjY4NGU1MDg1ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t), newsletter, à manzi-mfa
 11. Planification onboarding technique (si nécessaire) sur le projet de l'issue choisie OU passer à l'onboarding Produit
 12. Nos passions sait-on jamais
 
