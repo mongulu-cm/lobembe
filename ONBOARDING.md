@@ -6,7 +6,6 @@
 1. Présentation succinte de nous (ce que le collectif nous a déjà apporté professionnellement )
 2. Présentation du membre (aspirations professionnelles)
 3. Présentation de la charte (si pas déjà parcouru)
-4. Présentation de https://lobembe.mongulu.cm/
 5. Présentation de la structuration de l'organisation github
 6. Vue d'ensemble des projets
 7. Présentation des issues pouvant l'intéresser
@@ -57,4 +56,8 @@
 
 <details>
     <summary> ### Onboarding Produit</summary>
+
+    0. Présentation de https://lobembe.mongulu.cm/ avec Matomo,Posthog,Sentry, board kanban et identfiants dans zulip
+    2. Les membres sont dans dans https://github.com/mongulu-cm/contacts
+    2. Focus sur les issues de https://github.com/mongulu-cm/lobembe et choix/création
 </details>
