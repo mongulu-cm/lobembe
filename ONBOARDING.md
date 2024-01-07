@@ -17,7 +17,7 @@
 
 
 <details>
-  <summary> ### Onboarding Technique</summary>
+  <summary> ### Onboarding devs</summary>
 
   #### Commun
 
@@ -55,9 +55,16 @@
 
 
 <details>
-    <summary> ### Onboarding Produit</summary>
+    <summary> ### Onboarding hors devs</summary>
 
-    0. Présentation de https://lobembe.mongulu.cm/ avec Matomo,Posthog,Sentry, board kanban et identfiants dans zulip
-    2. Les membres sont dans dans https://github.com/mongulu-cm/contacts
-    2. Focus sur les issues de https://github.com/mongulu-cm/lobembe et choix/création
+  #### Marketing
+
+  1. Todo
+    
+  #### Produit
+
+  0. Présentation de https://lobembe.mongulu.cm/ avec board kanban, Matomo,Posthog,Sentry, et identfiants dans zulip
+  1. Les membres sont dans dans https://github.com/mongulu-cm/contacts
+  2. Focus sur les issues de https://github.com/mongulu-cm/lobembe et choix/création
+
 </details>
