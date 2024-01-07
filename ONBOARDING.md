@@ -1,11 +1,11 @@
 
 ## Etapes onboarding
 
-### Onboarding général
+### Général
 
 1. Présentation succinte de nous (ce que le collectif nous a déjà apporté professionnellement )
 2. Présentation du membre (aspirations professionnelles)
-3. Présentation de la charte
+3. Présentation de la charte (si pas déjà parcouru)
 4. Présentation de https://lobembe.mongulu.cm/
 5. Présentation de la structuration de l'organisation github
 6. Vue d'ensemble des projets
@@ -13,41 +13,48 @@
 8. Ajout au github et [comment contribuer](https://github.com/firstcontributions/first-contributions) dessus
 9. Présentation zulip et ajout (mail digest)
 10. Ajout communauté whatsapp, [google calendar](NjZkODkyNTUwNmUzMzJiY2M3ZmQwYjM5NDA1OThmNDEzZjNkODE1N2YxYWJjYzcyNjUwMTFkNjY4NGU1MDg1ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t), newsletter, à easyappointments
-11. Planification onboarding technique sur le projet de l'issue choisie
+11. Planification onboarding technique (si nécessaire) sur le projet de l'issue choisie OU passer à l'onboarding Produit
 12. Nos passions sait-on jamais
 
 
-### Onboarding projets
+<details>
+  <summary> ### Onboarding Technique</summary>
 
-#### Commun
+  #### Commun
 
-0. Ajout à github education si la personne est étudiante
-1. Clic sur le lien gitpod et explication pendant que running (laisse le browser)
-2. Changement du thème gitpod si nécessaire et persistence de celui-ci
-3. Présentation des plugin [Cody](https://www.loom.com/share/bf13980faa7a4d3d8991c3cdc72e40ae?sid=bfdc7647-6674-4ff5-9493-dee725776588), AWS Toolkit( Codewhisperer)
-4. Ajout au channel des secrets pour set les informations demandés par Gitpod
-5. Création de branche (sans le _) et ajout d'un espace (pre-commit corrige automatiquement) puis commentaire sur le fichier py ou tf
-6. Extinction/reprise (obligation de passer par gitpod et pas github sinon doublon/perte )
-7. Montrer où l'on peut modifier l'IDE par défaut
-8. Création de la branche de travail et push (configuration de gitpod pour read/write les repos + allow popup)
-9. Création de la merge request github et analyse
-11. Montrer comment pour ce cas-là, recréer son environnement à partir de sa branche
+  0. Ajout à GitHub Education si la personne est étudiante.
+  1. Cliquez sur le lien Gitpod et expliquez pendant son exécution (laissez le navigateur ouvert).
+  2. Changez le thème de Gitpod si nécessaire et persistez celui-ci.
+  3. Présentation des plugins [Cody](https://www.loom.com/share/bf13980faa7a4d3d8991c3cdc72e40ae?sid=bfdc7647-6674-4ff5-9493-dee725776588) et AWS Toolkit (CodeWhisperer).
+  4. Ajout au channel des secrets pour configurer les informations demandées par Gitpod.
+  5. Créez une branche (sans le "_") et ajoutez un espace (pre-commit corrige automatiquement) puis ajoutez un commentaire sur le fichier Python ou TensorFlow.
+  6. Éteignez/redémarrez (obligation de passer par Gitpod et non GitHub sinon doublon/perte).
+  7. Montrez où l'on peut modifier l'IDE par défaut.
+  8. Créez la branche de travail et poussez (configurez Gitpod pour autoriser la lecture/écriture dans les dépôts + autorisez les popups).
+  9. Créez une demande de fusion GitHub et analysez.
+  10. Montrez comment, dans ce cas, recréer son environnement à partir de sa branche.
+
+  #### Mtchoun-mouh
+
+  1. Trouvez l'URL du site web dans la pull request et entrez un utilisateur.
+  2. Récupérez l'URL d'accès à la console et visualisez l'utilisateur dans DynamoDB.
+  3. À partir de DynamoDB, faites un bref aperçu du serverless [ici](https://www.youtube.com/watch?v=HaehHcLVCTo).
+  4. Si vous travaillez sur le flux d'enregistrement : Accédez à AWS Lambda et effectuez une exécution positive (à partir du lambda-test-event.json).
+  5. Ensuite, effectuez une exécution négative (ajoutez "zzz" dans le code).
+  6. Si vous travaillez dans le flux de scan : Remplissez la base d'URL à l'aide du script et effectuez une exécution positive puis négative.
+
+  #### Tchoung-te
+
+  1. Activez l'ouverture de popups depuis l'instance et cliquez sur le lien vers Jupyter Lab (montrez le truc).
+  2. Effectuez une tâche consistant à créer un nouveau notebook en partant du fichier le plus propre.
+  3. Ouvrez ce fichier propre (refined-qualified) avec l'outil et montrez que vous pouvez utiliser Ctrl+F.
+  4. Ouvrez également le fichier par Internet en utilisant Datasette-Lite (le lien se trouve dans le README) pour des besoins avancés.
+  5. L'utilisateur crée ensuite un notebook et importe le dernier fichier (il devrait avoir l'autocomplétion grâce à NbQA).
+
+</details>
 
 
-#### Mtchoun-mouh
 
-1. Trouver l'URL du site web dans la pull request et rentrer un utilisateur
-2. Récupération de l'URL d'accès à la console et visualisation utilisateur dans DynamoDB
-3. À partir de DynamoDB, [petit point sur le serverless](https://www.youtube.com/watch?v=HaehHcLVCTo)
-4. Si travail sur le flux d'enregistrement : Accès à AWS Lambda et execution positive (à partir du lambda-test-event.json)
-5. Ensuite exécution négative (ajout de zzz dans le code)
-6. Si travail dans le flux de scan : Remplissage de la base URL grâce au script et éxécution positive puis négative
-
-
-#### Tchoung-te
-
-1. Activer l'ouverture de popups depuis l'instance et clic sur le lien vers jupyter lab (montrer le trick)
-2. Faire une tâche consite à créer un nouveau notebook en partant du fichier le plus propre
-3. Ouvrir justement ce fichier (refined-qualified) avec l'outil et montrer qu'on peut Ctrl+F
-4. Ouvrir également le fichier par internet en utilisant datasette-lite ( lien dans le README) pour besoins avancés
-5. L'utilisateur crée ensuite un notebook et importe le dernier fichier (devrait avoir l'autocomplétion grâce à NbQA)
+<details>
+    <summary> ### Onboarding Produit</summary>
+</details>
