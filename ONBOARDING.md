@@ -59,12 +59,14 @@
 
   #### Marketing
 
-  1. Todo
+  1. [Board kanban](https://github.com/orgs/mongulu-cm/projects/2/views/4)
+  2. [Matomo](https://matomo.mongulu.cm)
     
   #### Produit
 
-  0. Présentation de https://lobembe.mongulu.cm/ avec board kanban, Matomo,Posthog,Sentry,lien des produits(Gogocarto) et identfiants dans zulip
-  1. Les membres sont dans dans https://github.com/mongulu-cm/contacts
-  2. Focus sur les issues de https://github.com/mongulu-cm/lobembe et choix/création
+  0. Présentation de https://lobemb
+  1. e.mongulu.cm/ avec board kanban, Matomo,Posthog,Sentry,lien des produits(Gogocarto) et identfiants dans zulip
+  2. Les membres sont dans dans https://github.com/mongulu-cm/contacts
+  3. Focus sur les issues de https://github.com/mongulu-cm/lobembe et choix/création
 
 </details>
