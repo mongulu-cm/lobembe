@@ -52,4 +52,4 @@ meeting_notes/vendor/
 
 
 # Virtual env
-scripts/venv
+scripts/.venv
