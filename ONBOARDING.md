@@ -12,7 +12,7 @@
 8. Ajout au github et [comment contribuer](https://github.com/firstcontributions/first-contributions) dessus
 9. Présentation zulip et ajout (mail digest)
 10. Ajout communauté whatsapp, [google calendar](NjZkODkyNTUwNmUzMzJiY2M3ZmQwYjM5NDA1OThmNDEzZjNkODE1N2YxYWJjYzcyNjUwMTFkNjY4NGU1MDg1ZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t), newsletter, à manzi-mfa
-11. Planification onboarding technique (si nécessaire) sur le projet de l'issue choisie OU passer à l'onboarding Produit
+11. Planification onboarding technique (si nécessaire) sur le projet de l'issue choisie OU passer à l'onboarding Produit/Marketing
 12. Nos passions sait-on jamais
 
 
@@ -64,9 +64,8 @@
     
   #### Produit
 
-  0. Présentation de https://lobemb
-  1. e.mongulu.cm/ avec board kanban, Matomo,Posthog,Sentry,lien des produits(Gogocarto) et identfiants dans zulip
-  2. Les membres sont dans dans https://github.com/mongulu-cm/contacts
-  3. Focus sur les issues de https://github.com/mongulu-cm/lobembe et choix/création
+  0. Présentation de https://lobembe.mongulu.cm avec board kanban, Matomo,Posthog,Sentry,lien des produits(Gogocarto) et identfiants dans zulip
+  1. Les membres sont dans dans https://github.com/mongulu-cm/contacts
+  2. Focus sur les issues de https://github.com/mongulu-cm/lobembe et choix/création
 
 </details>
