@@ -1,0 +1,114 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/gitroomhq/postiz-app
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+  additionalPorts: []
+
+ingress:
+  enabled: true  # Disabled by default
+  className: "traefik"
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirecthttps@kubernetescrd
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: postiz.mongulu.cm
+      paths:
+        - path: /
+          pathType: Prefix
+          port: 80
+  tls:
+    - hosts:
+        - postiz.mongulu.cm
+      secretName: postiz-tls
+  extraRules: []
+
+resources: {}
+
+extraContainers: []
+
+extraVolumes: []
+extraVolumeMounts: []
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# PostgreSQL configuration
+postgresql:
+  enabled: false
+  auth:
+    username: postiz
+    password: postiz-password
+    database: postiz
+  service:
+    ports:
+      postgresql: 5432
+
+# Redis configuration
+redis:
+  enabled: true
+  master:
+    service:
+      ports:
+        redis: 6379
+
+# Environment variables
+env:
+  FRONTEND_URL: "https://postiz.mongulu.cm"
+  NEXT_PUBLIC_BACKEND_URL: "https://postiz.mongulu.cm/api"
+  BACKEND_INTERNAL_URL: "https://postiz.mongulu.cm/api"
+  UPLOAD_DIRECTORY: ""
+  NEXT_PUBLIC_UPLOAD_STATIC_DIRECTORY: ""
+  NX_ADD_PLUGINS: "false"
+  IS_GENERAL: "true"
+  DISABLE_REGISTRATION: "true"
+  EMAIL_FROM_NAME: "Admin Postiz"
+  EMAIL_FROM_ADDRESS: "collectif@transactional.mongulu.cm"
+  EMAIL_PROVIDER: "resend"
+
+
+
+# # Sensitive environment variables (to be stored in Secrets)
+# secrets:
+#   X_API_KEY: ""
+#   X_API_SECRET: ""
+#   LINKEDIN_CLIENT_ID: ""
+#   LINKEDIN_CLIENT_SECRET: ""
+#   REDDIT_CLIENT_ID: ""
+#   REDDIT_CLIENT_SECRET: ""
+#   GITHUB_CLIENT_ID: ""
+#   GITHUB_CLIENT_SECRET: ""
+#   CLOUDFLARE_ACCOUNT_ID: ""
+#   CLOUDFLARE_ACCESS_KEY: ""
+#   CLOUDFLARE_SECRET_ACCESS_KEY: ""
+#   CLOUDFLARE_BUCKETNAME: ""
+#   CLOUDFLARE_BUCKET_URL: ""
